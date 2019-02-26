@@ -30,6 +30,9 @@ public abstract class Account {
      * @param amount Amount to be transferred
      * @return true if successful, false if not
      */
-    public abstract boolean transfer(Account other_account, double amount);
+    public boolean transfer(Account other_account, double amount){
+        return false;
+        //TODO
+    }
 
 }

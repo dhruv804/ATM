@@ -24,15 +24,17 @@ public abstract class Asset extends Account{
         balance += amount;
     }
 
+
     @Override
     public boolean transfer(Account other_account, double amount) {
-
-        if (this.withdraw(amount)){
+        if (this.transfer_out(amount)){
             other_account.deposit(amount);
             return true;
         } else {
             return false;
         }
-
+        //TODO: Should be in User Class
     }
+
+    public abstract boolean transfer_out(double amount);
 }

@@ -7,8 +7,9 @@ public class CreditCard extends Debt{
     }
 
     @Override
-    public boolean withdraw(double amount) {
-        balance += amount;
-        return true;
+    public boolean transfer_out(double amount) {
+        return false;
     }
+
+
 }

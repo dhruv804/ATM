@@ -13,6 +13,10 @@ public class Chequing extends Asset{
         this.default_chequing = default_chequing;
     }
 
+    public boolean transfer_out(double amount){
+        return withdraw(amount);
+    }
+
     @Override
     public boolean withdraw(double amount) {
         if (balance-amount >= -100 && balance >= 0) {

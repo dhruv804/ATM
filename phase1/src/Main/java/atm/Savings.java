@@ -8,11 +8,10 @@ public class Savings extends Asset{
         super(u);
     }
 
+    public boolean transfer_out(double amount){
+        return withdraw(amount);
+    }
 
-    /**
-     *
-     * @param amount the amount to withdraw (amount >= 0)
-     */
     @Override
     public boolean withdraw(double amount) {
         if (balance-amount >= 0) {
