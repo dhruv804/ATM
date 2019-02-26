@@ -2,30 +2,29 @@ package atm;
 
 public class Savings extends Asset{
 
-    public Savings() {
-        super();
+    static private double interest_rate = 0.001;
+
+    public Savings(User u) {
+        super(u);
     }
+
 
     /**
      *
      * @param amount the amount to withdraw (amount >= 0)
      */
     @Override
-    public void withdraw(double amount) {
+    public boolean withdraw(double amount) {
         if (balance-amount >= 0) {
-            super.withdraw(amount);
+            return super.withdraw(amount);
         } else {
-            System.out.printf("Savings Account does not have enough balance to withdraw $%f." +
-                    "Current Balance at $%f", amount, balance);
+            //System.out.printf("Savings Account does not have enough balance to withdraw $%f.", amount);
+            return false;
         }
     }
 
-    /**
-     *
-     * @param amount the amount to deposit (amount >= 0)
-     */
-    @Override
-    public void deposit(double amount) {
-        super.deposit(amount);
+
+    public void interest_deposit(){
+        balance = balance * (1 + interest_rate); //TODO: Make this better
     }
 }

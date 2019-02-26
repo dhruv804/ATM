@@ -12,11 +12,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 public class Account_Test {
     private Account a, b;
+    private User u1, u2;
 
     @BeforeEach
     public void setUp() {
-        a = new Savings();
-        b = new Savings();
+        u1 = new User("Johnny");
+        u2 = new User("Ben");
+        a = new Savings(u1);
+        b = new Savings(u2);
     }
 
     @Test

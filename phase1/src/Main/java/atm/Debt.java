@@ -4,14 +4,15 @@ public abstract class Debt extends Account{
 
     protected double balance;
 
-    public Debt(){
-        super();
+    public Debt(User u){
+        super(u);
         this.balance = 0;
     }
 
     @Override
-    public void withdraw(double amount) {
+    public boolean withdraw(double amount) {
         balance += amount;
+        return true;
     }
 
     @Override
