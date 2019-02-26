@@ -45,12 +45,7 @@ public class Savings_Test {
     public void interest_payment_test() {
         a.deposit(1000);
         a.interest_deposit();
-        assertTrue(abs(a.getBalance() - 1001) < 0.01);
+        assertTrue(a.getBalance() - 1001 == 0);
     }
 
-    @Test
-    void transfer_between_users_test() {
-        a.deposit(100);
-
-    }
 }

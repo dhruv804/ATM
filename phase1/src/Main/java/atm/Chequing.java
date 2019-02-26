@@ -6,7 +6,7 @@ public class Chequing extends Asset{
 
     public Chequing(User u) {
         super(u);
-        this.default_chequing = false;
+        this.default_chequing = true;
     }
 
     public void setDefault_chequing(boolean default_chequing) {

@@ -25,6 +25,7 @@ public class Savings extends Asset{
 
 
     public void interest_deposit(){
-        balance = balance * (1 + interest_rate); //TODO: Make this better
+        balance = balance * (1 + interest_rate);
+        balance = (double) Math.round(balance * 100)/100;
     }
 }

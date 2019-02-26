@@ -27,4 +27,9 @@ public class Account_Test {
         assertTrue(a.getAccount_num() == 1);
         assertTrue(b.getAccount_num() == 2);
     }
+
+    @Test
+    public void transfer_between_users_test() {
+        //TODO
+    }
 }

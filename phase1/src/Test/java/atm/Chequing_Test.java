@@ -22,6 +22,14 @@ public class Chequing_Test {
     }
 
     @Test
+    public void deposit_test() {
+        a.deposit(500);
+        b.deposit(200);
+        assertTrue(a.getBalance() == 500);
+        assertTrue(b.getBalance() == 200);
+    }
+
+    @Test
     public void withdraw_test() {
         a.deposit(200);
 
@@ -39,5 +47,12 @@ public class Chequing_Test {
         assertFalse(b.withdraw(1));
         assertTrue(b.getBalance() == -50);
 
+    }
+
+    @Test
+    void interest_payment_test() {
+        a.deposit(1000);
+        a.interest_deposit();
+        assertTrue(a.getBalance() == 1000);
     }
 }
