@@ -1,4 +1,4 @@
-package java.atm;
+package atm;
 
 public class User {
 }

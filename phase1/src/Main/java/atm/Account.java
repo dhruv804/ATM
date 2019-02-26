@@ -1,8 +1,9 @@
-package java.atm;
+package atm;
 
-public class Account {
+public abstract class Account {
     private static int account_count = 0;
     private int account_num;
+
 
     public Account(){
         account_count++;
@@ -12,4 +13,9 @@ public class Account {
     public int getAccount_num() {
         return account_num;
     }
+
+    public abstract void withdraw(double amount);
+
+    public abstract void deposit(double amount);
+
 }
