@@ -1,4 +1,4 @@
-package phase1;
+package java.atm;
 
 public class LineOfCredit {
 }
