@@ -1,5 +1,7 @@
 package atm;
 
+import com.sun.tools.hat.internal.model.HackJavaValue;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,7 +27,7 @@ public class Machine {
         }
     }
 
-    public boolean insert_bill(int denom, int amount){
+    public boolean restock_bill(int denom, int amount){
         int prev = get_number_of(denom);
         if (prev >= 0){
             number_of_bills.put(denom, amount + prev);
@@ -43,14 +45,15 @@ public class Machine {
      * @return true if can be done, false if not
      */
     public boolean withdraw(int cash){
-        return true;
+        return true; //TODO: Someone implement this pls
     }
 
-    public static void main(String[] args) {
-        Machine m = new Machine();
-        m.insert_bill(21, 5);
-        m.insert_bill(20, 4);
-        System.out.println(m.get_number_of(21));
-
+    /**
+     * @return This method will return A map of denominations to how many bills must be inserted for the number of bills
+     * to be restocked to 20. If a bill denomination already has more than 20 bills, the denomination is mapped to 0
+     */
+    public HashMap<Integer, Integer> has_enough_cash(){
+        return new HashMap<Integer, Integer>(); //TODO: Someone implement this pls
     }
+
 }
