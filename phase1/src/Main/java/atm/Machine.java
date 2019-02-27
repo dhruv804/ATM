@@ -2,12 +2,10 @@ package atm;
 
 import com.sun.tools.hat.internal.model.HackJavaValue;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by vedantshah on 2019-02-25.
- */
 public class Machine {
     public Map<Integer, Integer> number_of_bills = new HashMap<Integer, Integer>();
 
@@ -39,21 +37,52 @@ public class Machine {
 
     /**
      * This method will subtract the bill denomination amounts, and figure out
-     * how to give give the cash to the consumer.
+     * how to give the cash to the consumer.
      *
      * @param cash: The amount to be withdrawn from the ATM
      * @return true if can be done, false if not
      */
     public boolean withdraw(int cash){
-        return true; //TODO: Someone implement this pls
+        if (cash < 5) {
+            return false;
+        }
+
+        int prev = 5;
+
+        while(cash > 0) {
+            for (int i : number_of_bills.keySet()) {
+                if (i > cash) {
+                    cash -= prev;
+                    number_of_bills.replace(prev, number_of_bills.get(prev) - 1);
+                    prev = 5;
+                } else {
+                    prev = i;
+                }
+            }
+        }
+        return true;
     }
 
     /**
-     * @return This method will return A map of denominations to how many bills must be inserted for the number of bills
+     * @return This method will return a map of denominations to how many bills must be inserted for the number of bills
      * to be restocked to 20. If a bill denomination already has more than 20 bills, the denomination is mapped to 0
      */
     public HashMap<Integer, Integer> has_enough_cash(){
-        return new HashMap<Integer, Integer>(); //TODO: Someone implement this pls
+
+        HashMap<Integer, Integer> restock_bills = new HashMap<Integer, Integer>();
+
+        int[] denominations = {5, 10, 20, 50, 100};
+
+
+        for (int i : denominations) {
+            if (number_of_bills.get(i) < 20) {
+                restock_bills.put(i, 20 - number_of_bills.get(i));
+            } else {
+                restock_bills.put(i, 0);
+            }
+        }
+
+        return restock_bills;
     }
 
 }
