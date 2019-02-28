@@ -13,7 +13,6 @@ public class BankManager {
     protected class Request{
         User user_requesting;
         Account account_requested;
-        //TODO: Someone implement pls (Make constructor)
 
         public Request(User user_requesting, Account account_requested) {
             this.user_requesting = user_requesting;
@@ -33,7 +32,6 @@ public class BankManager {
      *
      */
     public void request_account(User user, Account account_type){
-        //TODO: Someone implement pls
         Request req = new Request(user,account_type);
         pending_requests.add(req);
     }
@@ -43,7 +41,6 @@ public class BankManager {
      * It will also remove the request from the list of pending requests
      */
     public void add_all_accounts(){
-        //TODO: Someone implement pls
         for (Request r : pending_requests){
             r.user_requesting.add_account(r.account_requested);
             pending_requests.remove(r);
