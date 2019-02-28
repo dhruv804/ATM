@@ -1,6 +1,7 @@
 package atm;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by vedantshah on 2019-02-27.
@@ -21,6 +22,7 @@ public class BankManager {
     }
 
     ArrayList<Request> pending_requests = new ArrayList<>();
+
 
 
     /**
@@ -47,4 +49,17 @@ public class BankManager {
         pending_requests.clear();
     }
 
+    /**
+     * This method will restock the Machine to have 20 of each bill.
+     * @param machine: This is the machine being restocked
+     */
+    private void restock_machine(Machine machine){
+        HashMap <Integer, Integer> cur_map = machine.has_enough_cash();
+
+        int[] denominations = {5, 10, 20, 50, 100};
+
+        for (int i : denominations) {
+            machine.restock_bill(i, cur_map.get(i));
+        }
+    }
 }

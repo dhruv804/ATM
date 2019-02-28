@@ -39,19 +39,17 @@ public class Machine {
         FileWriter write = new FileWriter(path, true);
         PrintWriter print_alert = new PrintWriter(write);
 
-        print_alert.printf("Machine has less than 20 %f", denom);
+        print_alert.printf("Machine has less than 20 %f"); //string(denom));
+        //Todo
 
 
 
     }
-
-    public boolean restock_bill(int denom, int amount){
+    // Changed return type from boolean to void for bankmanager restock method
+    public void restock_bill(int denom, int amount){ // Changed return type from boolean to void for bankmanager restock method
         int prev = get_number_of(denom);
         if (prev >= 0){
             number_of_bills.put(denom, amount + prev);
-            return true;
-        } else {
-            return false;
         }
     }
 
