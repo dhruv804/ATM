@@ -21,7 +21,7 @@ public class BankManager {
         }
     }
 
-    ArrayList<Request> pending_requests;
+    ArrayList<Request> pending_requests = new ArrayList<>();
 
 
     /**
