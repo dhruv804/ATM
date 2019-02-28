@@ -40,6 +40,7 @@ public class Machine {
         PrintWriter print_alert = new PrintWriter(write);
 
         print_alert.printf("Machine has less than 20 %f"); //string(denom));
+        print_alert.close();
         //Todo
 
 
