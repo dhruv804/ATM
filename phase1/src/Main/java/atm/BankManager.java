@@ -1,10 +1,6 @@
 package atm;
 
-import com.sun.org.apache.regexp.internal.RE;
-import jdk.internal.util.xml.impl.Pair;
-
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by vedantshah on 2019-02-27.
@@ -14,10 +10,15 @@ public class BankManager {
     /**
      * This is a class for requests, we will add it to the GUI so requests can be processed
      */
-    private class Request{
+    protected class Request{
         User user_requesting;
         Account account_requested;
         //TODO: Someone implement pls (Make constructor)
+
+        public Request(User user_requesting, Account account_requested) {
+            this.user_requesting = user_requesting;
+            this.account_requested = account_requested;
+        }
     }
 
     ArrayList<Request> pending_requests;
@@ -28,21 +29,25 @@ public class BankManager {
      * It will add the request to a list of requests to be processed.
      *
      * @param user: This is the user requesting an account
-     * @param account_type: This is a string of the account type
+     * @param account_type: The type of account requested for
      *
      */
-    public void request_account(User user, String account_type){
-        return; //TODO: Someone implement pls
+    public void request_account(User user, Account account_type){
+        //TODO: Someone implement pls
+        Request req = new Request(user,account_type);
+        pending_requests.add(req);
     }
 
     /**
      * This method will add an account to a user from the pending requests
      * It will also remove the request from the list of pending requests
-     *
-     * @param request: This is the request that is being processed
      */
-    public void add_account_to_user(Request request){
-        return; //TODO: Someone implement pls
+    public void add_all_accounts(){
+        //TODO: Someone implement pls
+        for (Request r : pending_requests){
+            r.user_requesting.add_account(r.account_requested);
+            pending_requests.remove(r);
+        }
     }
 
 }
