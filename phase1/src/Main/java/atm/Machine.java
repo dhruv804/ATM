@@ -39,7 +39,7 @@ public class Machine {
         FileWriter write = new FileWriter(path, true);
         PrintWriter print_alert = new PrintWriter(write);
 
-        print_alert.printf("Machine has less than 20 %f", denom);
+        print_alert.printf("Machine has less than 20 %f", str(denom));
 
 
 
