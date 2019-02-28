@@ -10,5 +10,8 @@ public class User {
         this.name = name;
     }
 
+    public void add_account(Account account){
+        account_list.add(account);
+    }
 
 }
