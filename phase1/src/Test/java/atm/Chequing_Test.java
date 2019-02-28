@@ -11,14 +11,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 public class Chequing_Test {
     private Chequing a, b;
-    private User u1, u2;
+    //private User u1, u2;
 
     @BeforeEach
     public void setUp() {
-        u1 = new User("Johnny");
-        u2 = new User("Ben");
-        a = new Chequing(u1);
-        b = new Chequing(u2);
+        //u1 = new User("Johnny");
+        //u2 = new User("Ben");
+        a = new Chequing();
+        b = new Chequing();
     }
 
     @Test

@@ -8,8 +8,8 @@ public abstract class Debt extends Account{
         return balance;
     }
 
-    public Debt(User u){
-        super(u);
+    public Debt(){
+        super();
         this.balance = 0;
     }
 

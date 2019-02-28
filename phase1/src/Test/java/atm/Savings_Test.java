@@ -3,7 +3,6 @@ package atm;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static java.lang.Math.abs;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -11,14 +10,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class Savings_Test {
 
     private Savings a, b;
-    private User u1, u2;
+    //private User u1, u2;
 
     @BeforeEach
     public void setUp() {
-        u1 = new User("Johnny");
-        u2 = new User("Ben");
-        a = new Savings(u1);
-        b = new Savings(u2);
+        //u1 = new User("Johnny");
+        //u2 = new User("Ben");
+        a = new Savings();
+        b = new Savings();
     }
 
     @Test

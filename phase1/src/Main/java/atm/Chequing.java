@@ -4,8 +4,8 @@ public class Chequing extends Asset{
 
     private boolean default_chequing;
 
-    public Chequing(User u) {
-        super(u);
+    public Chequing() {
+        super();
         this.default_chequing = true;
     }
 

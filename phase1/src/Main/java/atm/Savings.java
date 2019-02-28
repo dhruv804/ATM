@@ -4,8 +4,8 @@ public class Savings extends Asset{
 
     static private double interest_rate = 0.001;
 
-    public Savings(User u) {
-        super(u);
+    public Savings() {
+        super();
     }
 
     public boolean transfer_out(double amount){

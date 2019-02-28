@@ -1,8 +1,5 @@
 package atm;
 
-import com.sun.tools.hat.internal.model.HackJavaValue;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 

@@ -11,14 +11,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 public class CreditCard_Test {
     private CreditCard a, b;
-    private User u1, u2;
+    //private User u1, u2;
 
     @BeforeEach
     void setUp() {
-        u1 = new User("John");
-        u2 = new User("Ben");
-        a = new CreditCard(u1);
-        b = new CreditCard(u2);
+        //u1 = new User("John");
+        //u2 = new User("Ben");
+        a = new CreditCard();
+        b = new CreditCard();
     }
 
     @Test

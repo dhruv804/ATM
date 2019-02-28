@@ -2,8 +2,8 @@ package atm;
 
 public class LineOfCredit extends Debt {
 
-    public LineOfCredit(User u) {
-        super(u);
+    public LineOfCredit() {
+        super();
     }
 
     @Override
