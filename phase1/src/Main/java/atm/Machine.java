@@ -1,5 +1,7 @@
 package atm;
 
+import com.sun.xml.internal.bind.v2.TODO;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.io.FileWriter;
@@ -40,8 +42,7 @@ public class Machine {
         PrintWriter print_alert = new PrintWriter(write);
 
         print_alert.printf("Machine has less than 20 %f", str(denom));
-
-
+        print_alert.close();
 
     }
 
@@ -77,6 +78,10 @@ public class Machine {
                 if (i > cash) {
                     cash -= prev;
                     number_of_bills.replace(prev, number_of_bills.get(prev) - 1);
+                    // TODO
+//                    if (get_number_of(prev) < 20){
+//                        create_alert(prev);
+//                    }
                     prev = 5;
                 } else {
                     prev = i;
@@ -100,6 +105,7 @@ public class Machine {
         for (int i : denominations) {
             if (number_of_bills.get(i) < 20) {
                 restock_bills.put(i, 20 - number_of_bills.get(i));
+
             } else {
                 restock_bills.put(i, 0);
             }
