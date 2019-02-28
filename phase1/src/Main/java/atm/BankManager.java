@@ -43,8 +43,8 @@ public class BankManager {
     public void add_all_accounts(){
         for (Request r : pending_requests){
             r.user_requesting.add_account(r.account_requested);
-            pending_requests.remove(r);
         }
+        pending_requests.clear();
     }
 
 }
