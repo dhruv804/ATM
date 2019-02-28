@@ -2,9 +2,14 @@ package atm;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.IOException;
 
 public class Machine {
     public Map<Integer, Integer> number_of_bills = new HashMap<Integer, Integer>();
+    public int total_cash = 0;
+    private String path = "phase1/alerts.txt";
 
     public Machine() {
         number_of_bills.put(5, 0);
@@ -14,12 +19,30 @@ public class Machine {
         number_of_bills.put(100, 0);
     }
 
+    public int get_total_cash(){
+        for(int i: number_of_bills.keySet()){
+            total_cash += number_of_bills.get(i) * i;
+        }
+        return total_cash;
+    }
+
     public int get_number_of(int denom){
         try {
             return number_of_bills.get(denom);
         } catch (NullPointerException n){
             return -1;
         }
+    }
+
+
+    public void create_alert(int denom) throws IOException{
+        FileWriter write = new FileWriter(path, true);
+        PrintWriter print_alert = new PrintWriter(write);
+
+        print_alert.printf("Machine has less than 20 %f", denom);
+
+
+
     }
 
     public boolean restock_bill(int denom, int amount){
@@ -40,7 +63,10 @@ public class Machine {
      * @return true if can be done, false if not
      */
     public boolean withdraw(int cash){
-        if (cash < 5) {
+        if (cash < 5){
+            return false;
+        }
+        if (cash > get_total_cash()){
             return false;
         }
 
