@@ -24,7 +24,7 @@ public class BankManager {
     }
 
     ArrayList<Request> pending_requests = new ArrayList<>();
-    ArrayList<User> all_accounts = new ArrayList<>();
+    ArrayList<User> all_users = new ArrayList<>();
 
 
     /**
@@ -41,17 +41,26 @@ public class BankManager {
     }
 
     /**
-     * This method will add an account to a user from the pending requests
-     * It will also remove the request from the list of pending requests
+     * This method adds user to all_accounts if user is not already in all_accounts
+     * @param user is the user being added to all_accounts
      */
+    public void add_account(User user){
+        boolean found = false;
+
+        for(Request r: pending_requests) {
+            if (r.user_requesting.get_user_id().equals(user.get_user_id())) {
+                found = true;
+            }
+        }
+        if(!found){
+            all_users.add(user);
+        }
+
+    }
 
     /**
-     *
-     * @param : request being added to accounts
-     * @return True iff account has been added into all_accounts
+     * This method adds all requests to all_accounts if accounts are not already in all_accounts
      */
-
-
     public void add_all_accounts(){
         for (Request r : pending_requests){
             r.user_requesting.add_account(r.account_requested);

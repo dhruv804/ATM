@@ -15,7 +15,6 @@ public class User {
     }
 
     public void set_user_id(String id){
-
         this.user_id = id;
     }
 
