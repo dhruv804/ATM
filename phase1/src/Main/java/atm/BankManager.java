@@ -7,10 +7,12 @@ import java.util.HashMap;
  * Created by vedantshah on 2019-02-27.
  */
 public class BankManager {
-
     /**
      * This is a class for requests, we will add it to the GUI so requests can be processed
      */
+
+
+
     protected class Request{
         User user_requesting;
         Account account_requested;
@@ -22,8 +24,7 @@ public class BankManager {
     }
 
     ArrayList<Request> pending_requests = new ArrayList<>();
-    ArrayList<User> all_accounts = new ArrayList();
-
+    ArrayList<User> all_accounts = new ArrayList<>();
 
 
     /**
@@ -49,7 +50,6 @@ public class BankManager {
      * @param : request being added to accounts
      * @return True iff account has been added into all_accounts
      */
-    //public Boolean add_account(Request r){
 
 
     public void add_all_accounts(){
