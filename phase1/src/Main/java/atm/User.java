@@ -19,6 +19,10 @@ public class User {
         this.user_id = id;
     }
 
+    public String get_user_id(){
+        return this.user_id;
+    }
+
     public void set_user_pass(String pass){
         this.user_pass = pass;
     }
