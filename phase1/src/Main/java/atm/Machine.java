@@ -107,4 +107,15 @@ public class Machine {
         return restock_bills;
     }
 
+    public void restock_machine() {
+        HashMap<Integer, Integer> cur_map = has_enough_cash();
+
+        int[] denominations = {5, 10, 20, 50, 100};
+
+        for (int i : denominations) {
+            restock_bill(i, cur_map.get(i));
+
+        }
+    }
+
 }
