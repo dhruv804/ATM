@@ -39,7 +39,7 @@ public class Machine {
         FileWriter write = new FileWriter(path, true);
         PrintWriter print_alert = new PrintWriter(write);
 
-        print_alert.printf("Machine has less than 20 %f"); //string(denom));
+        print_alert.printf("Machine has less than 20 %d", denom);
         print_alert.close();
         //Todo
 
@@ -105,6 +105,17 @@ public class Machine {
         }
 
         return restock_bills;
+    }
+
+    public void restock_machine() {
+        HashMap<Integer, Integer> cur_map = has_enough_cash();
+
+        int[] denominations = {5, 10, 20, 50, 100};
+
+        for (int i : denominations) {
+            restock_bill(i, cur_map.get(i));
+
+        }
     }
 
 }

@@ -22,6 +22,7 @@ public class BankManager {
     }
 
     ArrayList<Request> pending_requests = new ArrayList<>();
+    ArrayList<User> all_accounts = new ArrayList();
 
 
 
@@ -42,6 +43,15 @@ public class BankManager {
      * This method will add an account to a user from the pending requests
      * It will also remove the request from the list of pending requests
      */
+
+    /**
+     *
+     * @param : request being added to accounts
+     * @return True iff account has been added into all_accounts
+     */
+    //public Boolean add_account(Request r){
+
+
     public void add_all_accounts(){
         for (Request r : pending_requests){
             r.user_requesting.add_account(r.account_requested);
@@ -54,12 +64,7 @@ public class BankManager {
      * @param machine: This is the machine being restocked
      */
     private void restock_machine(Machine machine){
-        HashMap <Integer, Integer> cur_map = machine.has_enough_cash();
-
-        int[] denominations = {5, 10, 20, 50, 100};
-
-        for (int i : denominations) {
-            machine.restock_bill(i, cur_map.get(i));
+        machine.restock_machine();
         }
-    }
+
 }

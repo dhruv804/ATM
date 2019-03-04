@@ -31,8 +31,11 @@ public abstract class Account {
      * @return true if successful, false if not
      */
     public boolean transfer(Account other_account, double amount){
-        return false;
-        //TODO
+        if (this.withdraw(amount)){
+            other_account.deposit(amount);
+            return true;
+        } else {
+            return false;
+        }
     }
-
 }
