@@ -1,7 +1,6 @@
 package atm;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -24,15 +23,18 @@ public class BankManagerFrame {
     private JButton button1;
     private JButton refreshButton;
     private JTextArea accountDetailsTextArea;
-    private JComboBox comboBox1;
+    private JComboBox account_select;
+    private JButton refreshButton1;
     private Machine machine = new Machine();
+    private BankManager bank_manager;
 
 
-    public BankManagerFrame() {
+    public BankManagerFrame(BankManager bank_manager) {
+        this.bank_manager = bank_manager;
         refreshButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                update();
+                update_bill_amounts();
             }
         });
         button1.addActionListener(new ActionListener() {
@@ -73,26 +75,45 @@ public class BankManagerFrame {
 
                 }
 
-                update();
+                update_bill_amounts();
+            }
+        });
+        refreshButton1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Refresh Account Creation");
+                update_requests();
             }
         });
     }
 
     public void run() {
-        this.update();
         JFrame frame = new JFrame("Bank Manager");
-        frame.setContentPane(new BankManagerFrame().tabbedPane1);
+        frame.setContentPane(new BankManagerFrame(bank_manager).tabbedPane1);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
     }
 
-    public void update(){
+    public void update_bill_amounts(){
         num5.setText("Number of 5's: " + String.valueOf(machine.get_number_of(5)));
         num10.setText("Number of 10's: " + String.valueOf(machine.get_number_of(10)));
         num20.setText("Number of 20's: " + String.valueOf(machine.get_number_of(20)));
         num50.setText("Number of 50's: " + String.valueOf(machine.get_number_of(50)));
         num100.setText("Number of 100's: " + String.valueOf(machine.get_number_of(100)));
+
+        textField1.setText("0");
+        textField2.setText("0");
+        textField3.setText("0");
+        textField4.setText("0");
+        textField5.setText("0");
+
+    }
+
+    public void update_requests(){
+        for (BankManager.Request r: bank_manager.pending_requests){
+            account_select.addItem(r);
+        }
     }
 
     public void setUp(Machine machine){
@@ -103,4 +124,7 @@ public class BankManagerFrame {
         machine.restock_bill(100, 10);
     }
 
+    private void createUIComponents() {
+        account_select = new JComboBox();
+    }
 }
