@@ -10,9 +10,6 @@ public class BankManager {
     /**
      * This is a class for requests, we will add it to the GUI so requests can be processed
      */
-
-
-
     protected class Request{
         User user_requesting;
         Account account_requested;
@@ -74,6 +71,6 @@ public class BankManager {
      */
     private void restock_machine(Machine machine){
         machine.restock_machine();
-        }
+    }
 
 }
