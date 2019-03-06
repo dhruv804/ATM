@@ -9,7 +9,7 @@ import java.io.IOException;
 public class Machine {
     public Map<Integer, Integer> number_of_bills = new HashMap<Integer, Integer>();
     public int total_cash = 0;
-    private String path = "phase1/alerts.txt";
+    private String path = "group_0315/phase1/alerts.txt";
 
     public Machine() {
         number_of_bills.put(5, 0);
@@ -36,16 +36,23 @@ public class Machine {
 
 
     public void create_alert(int denom) throws IOException{
-        FileWriter write = new FileWriter(path, true);
-        PrintWriter print_alert = new PrintWriter(write);
+        try {
 
-        print_alert.printf("Machine has less than 20 %d", denom);
-        print_alert.close();
-        //Todo
+            FileWriter write = new FileWriter(path, true);
+            PrintWriter print_alert = new PrintWriter(write);
+            print_alert.printf("Machine has less than 20 %d", denom); // maybe
+            print_alert.close();
+        }
 
+        catch (IOException e) {
+            System.out.println("Sorry manager - no can do!");
 
+        }
+
+        //Todo: try-catch using FileWriter and PrintWriter
 
     }
+
     // Changed return type from boolean to void for bankmanager restock method
     public void restock_bill(int denom, int amount){ // Changed return type from boolean to void for bankmanager restock method
         int prev = get_number_of(denom);

@@ -26,6 +26,8 @@ public abstract class Debt extends Account{
 
     public abstract boolean transfer_out(double amount);
 
+    public abstract void transfer_in(double amount);
+
     @Override
     public abstract String get_account_type();
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class User {
     protected String name;
-    public ArrayList<Request> requested_accounts; //list of requested accounts from all users
+    protected ArrayList<Request> requested_accounts; //list of requested accounts from all users
     protected ArrayList<Account> account_list;
     protected String user_id;
     protected String user_pass;
