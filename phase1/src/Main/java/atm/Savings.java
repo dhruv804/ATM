@@ -27,4 +27,9 @@ public class Savings extends Asset{
         balance = balance * (1 + interest_rate);
         balance = (double) Math.round(balance * 100)/100;
     }
+
+    @Override
+    public String get_account_type(){
+        return "Savings";
+    }
 }

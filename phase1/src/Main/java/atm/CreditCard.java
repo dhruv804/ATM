@@ -11,5 +11,10 @@ public class CreditCard extends Debt{
         return false;
     }
 
+    @Override
+    public String get_account_type(){
+        return "Credit Card";
+    }
+
 
 }

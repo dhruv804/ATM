@@ -38,4 +38,6 @@ public abstract class Account {
             return false;
         }
     }
+
+    public abstract String get_account_type();
 }

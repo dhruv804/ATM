@@ -27,5 +27,10 @@ public class Chequing extends Asset{
         }
     }
 
+    @Override
+    public String get_account_type(){
+        return "Chequing";
+    }
+
 
 }

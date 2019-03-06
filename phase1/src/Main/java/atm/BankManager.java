@@ -18,6 +18,13 @@ public class BankManager {
             this.user_requesting = user_requesting;
             this.account_requested = account_requested;
         }
+
+        public String get_info(){
+            String n = "Name: " + user_requesting.getName() + "; ";
+            String i = "ID: " + user_requesting.get_user_id() + "; ";
+            String a = "Account Type Requested: " + account_requested.get_account_type() + ";";
+            return n;
+        }
     }
 
     ArrayList<Request> pending_requests = new ArrayList<>();

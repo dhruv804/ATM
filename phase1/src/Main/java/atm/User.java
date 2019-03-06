@@ -22,6 +22,10 @@ public class User {
         return this.user_id;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void set_user_pass(String pass){
         this.user_pass = pass;
     }
