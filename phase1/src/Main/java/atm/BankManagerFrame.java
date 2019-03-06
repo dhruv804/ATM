@@ -25,7 +25,10 @@ public class BankManagerFrame {
     private JTextArea accountDetailsTextArea;
     private JComboBox account_select;
     private JButton refreshButton1;
-    private Machine machine = new Machine();
+    private JComboBox names_requested;
+    private JButton setUsernameAndPasswordButton;
+    private JButton refresh_user_requests;
+    private static Machine machine = new Machine();
     private static BankManager bank_manager;
 
 
@@ -85,6 +88,13 @@ public class BankManagerFrame {
                 update_requests();
             }
         });
+        refresh_user_requests.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Refresh User Creation");
+                update_requests();
+            }
+        });
     }
 
     public void run() {
@@ -114,6 +124,11 @@ public class BankManagerFrame {
         for (Request r: bank_manager.pending_acc_requests){
             account_select.addItem(r);
         }
+
+        names_requested.removeAllItems();
+        for (String n : bank_manager.pending_user_requests){
+            names_requested.addItem(n);
+        }
     }
 
     public void setUp(Machine machine){
@@ -126,5 +141,6 @@ public class BankManagerFrame {
 
     private void createUIComponents() {
         account_select = new JComboBox();
+        names_requested = new JComboBox();
     }
 }
