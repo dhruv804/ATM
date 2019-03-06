@@ -25,7 +25,7 @@ public class BankManagerFrame {
     private JButton refreshButton;
     private JTextArea accountDetailsTextArea;
     private JComboBox comboBox1;
-    private static Machine machine = new Machine();
+    private Machine machine = new Machine();
 
 
     public BankManagerFrame() {
