@@ -12,6 +12,11 @@ public class CreditCard extends Debt{
     }
 
     @Override
+    public void transfer_in(double amount) {
+        this.deposit(amount);
+    }
+
+    @Override
     public String get_account_type(){
         return "Credit Card";
     }
