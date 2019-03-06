@@ -11,7 +11,6 @@ public class Main {
         BankManager bank_manager = new BankManager();
         User u1 = new User("Ved");
         Chequing c1 = new Chequing();
-        bank_manager.request_account(u1, c1);
         BankManagerFrame b = new BankManagerFrame(bank_manager);
         BankManagerFrame b2 = new BankManagerFrame(bank_manager);
         b.run();

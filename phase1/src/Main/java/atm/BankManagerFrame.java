@@ -111,7 +111,7 @@ public class BankManagerFrame {
     }
 
     public void update_requests(){
-        for (BankManager.Request r: bank_manager.pending_requests){
+        for (Request r: bank_manager.pending_requests){
             account_select.addItem(r);
         }
     }
