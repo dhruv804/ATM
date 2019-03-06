@@ -26,7 +26,7 @@ public class BankManagerFrame {
     private JComboBox account_select;
     private JButton refreshButton1;
     private Machine machine = new Machine();
-    private BankManager bank_manager;
+    private static BankManager bank_manager;
 
 
     public BankManagerFrame(BankManager bank_manager) {
@@ -90,7 +90,7 @@ public class BankManagerFrame {
     public void run() {
         JFrame frame = new JFrame("Bank Manager");
         frame.setContentPane(new BankManagerFrame(bank_manager).tabbedPane1);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
     }
@@ -111,7 +111,7 @@ public class BankManagerFrame {
     }
 
     public void update_requests(){
-        for (Request r: bank_manager.pending_requests){
+        for (Request r: bank_manager.pending_acc_requests){
             account_select.addItem(r);
         }
     }

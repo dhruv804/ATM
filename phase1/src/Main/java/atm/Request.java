@@ -13,7 +13,7 @@ public class Request{
     }
 
     public String get_info(){
-        String n = "Name: " + user_requesting.getName() + "; ";
+        String n = "Name: " + user_requesting.get_Name() + "; ";
         String i = "ID: " + user_requesting.get_user_id() + "; ";
         String a = "Account Type Requested: " + account_requested.get_account_type() + ";";
         return n+i+a;
