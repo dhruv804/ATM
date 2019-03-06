@@ -10,9 +10,11 @@ public class User {
     protected String user_pass;
 
 
-    public User(String name) {
+    public User(String name, String user_id, String user_pass) {
         this.name = name;
         this.account_list = new ArrayList<>();
+        this.user_id = user_id;
+        this.user_pass = user_pass;
     }
 
     /**
@@ -26,15 +28,11 @@ public class User {
         requested_accounts.add(req);
     }
 
-    public void set_user_id(String id){
-        this.user_id = id;
-    }
-
     public String get_user_id(){
         return this.user_id;
     }
 
-    public String getName() {
+    public String get_Name() {
         return name;
     }
 
