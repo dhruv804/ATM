@@ -34,4 +34,13 @@ public class Manager_Test {
         assertTrue(u1.account_list.size() == 2);
         assertTrue(m1.pending_requests.size() == 0);
     }
+
+    @Test
+    public void get_info_test(){
+        m1.request_account(u1, c1);
+        m1.request_account(u1, s1);
+        for (BankManager.Request request: m1.pending_requests){
+            System.out.println(request.get_info());
+        }
+    }
 }

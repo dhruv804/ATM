@@ -23,7 +23,7 @@ public class BankManager {
             String n = "Name: " + user_requesting.getName() + "; ";
             String i = "ID: " + user_requesting.get_user_id() + "; ";
             String a = "Account Type Requested: " + account_requested.get_account_type() + ";";
-            return n;
+            return n+i+a;
         }
     }
 
