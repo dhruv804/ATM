@@ -30,20 +30,6 @@ public class BankManager {
     ArrayList<Request> pending_requests = new ArrayList<>();
     ArrayList<User> all_users = new ArrayList<>();
 
-
-    /**
-     * This method will allow users to request an account from the bank manager.
-     * It will add the request to a list of requests to be processed.
-     *
-     * @param user: This is the user requesting an account
-     * @param account_type: The type of account requested for
-     *
-     */
-    public void request_account(User user, Account account_type){
-        Request req = new Request(user,account_type);
-        pending_requests.add(req);
-    }
-
     /**
      * This method adds user to all_accounts if user is not already in all_accounts
      * @param user is the user being added to all_accounts
