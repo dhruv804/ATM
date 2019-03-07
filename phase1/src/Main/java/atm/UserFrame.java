@@ -19,21 +19,21 @@ public class UserFrame {
 
     public UserFrame(User user) {
         this.user = user;
+        update_accounts();
 
         refreshButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                comboBox1.removeAllItems();
                 for (Account acc : user.account_list){
-                    comboBox1.addItem(acc);
+                    if (((DefaultComboBoxModel)comboBox1.getModel()).getIndexOf(acc) == -1) { //TODO: Do similar for others
+                        comboBox1.addItem(acc);
+                    }
                 }
             }
         });
         comboBox1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-
                 Account temp_acc = (Account)comboBox1.getSelectedItem();
                 details_area.setText(temp_acc.get_account_details());
             }
@@ -47,5 +47,13 @@ public class UserFrame {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+    }
+
+    public void update_accounts(){
+        for (Account acc : user.account_list){
+            if (((DefaultComboBoxModel)comboBox1.getModel()).getIndexOf(acc) == -1) {
+                comboBox1.addItem(acc);
+            }
+        }
     }
 }

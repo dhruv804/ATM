@@ -34,6 +34,7 @@ public class BankManagerFrame {
 
     public BankManagerFrame(BankManager bank_manager) {
         this.bank_manager = bank_manager;
+        update_bill_amounts();
         refreshButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
