@@ -48,6 +48,7 @@ public class LoginFrame {
             public void actionPerformed(ActionEvent e) {
                 bank_manager.create_user_request(name_field.getText());
                 JOptionPane.showMessageDialog(null, "Application Sent");
+                name_field.setText("");
             }
         });
     }

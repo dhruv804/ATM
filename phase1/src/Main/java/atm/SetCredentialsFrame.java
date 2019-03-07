@@ -24,17 +24,20 @@ public class SetCredentialsFrame {
         this.name = name;
         this.bank_manager = bank_manager;
 
+
         createButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 create_user();
+                close();
             }
         });
+
 
     }
 
     public void run(){
-        frame.setContentPane(new SetCredentialsFrame(name, bank_manager).credentials_jpanel);
+        frame.setContentPane(credentials_jpanel);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //TODO: Change to DO_NOTHING
         frame.pack();
         frame.setVisible(true);

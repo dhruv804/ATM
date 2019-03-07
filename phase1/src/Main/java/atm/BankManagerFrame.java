@@ -103,6 +103,7 @@ public class BankManagerFrame {
                     String s = (String)names_requested.getSelectedItem();
                     SetCredentialsFrame set_c_frame = new SetCredentialsFrame(s, bank_manager);
                     set_c_frame.run();
+                    names_requested.removeItem(s);
                 }
             }
         });
