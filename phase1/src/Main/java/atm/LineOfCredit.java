@@ -20,4 +20,10 @@ public class LineOfCredit extends Debt {
     public String toString(){
         return "Line of Credit"+this.getAccount_num();
     }
+
+    public String get_account_details(){
+        String l1 = "Account Type: Line of Credit\n";
+        String l2 = "Balance: " + this.getBalance() + "\n";
+        return l1+l2;
+    }
 }
