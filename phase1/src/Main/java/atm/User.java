@@ -28,6 +28,20 @@ public class User {
         requested_accounts.add(req);
     }
 
+    public boolean transfer(Account from, Account to, double amount) {
+        return from.transfer(to, amount);
+    }
+
+    public boolean transfer(Account from, User to, double amount) {
+        from. withdraw(amount);
+        return false;
+        //TODO: UNFINISHED
+    }
+
+    public boolean transfer(Account from, double amount) {
+        return from.withdraw(amount);
+    }
+
     public String get_user_id(){
         return this.user_id;
     }
