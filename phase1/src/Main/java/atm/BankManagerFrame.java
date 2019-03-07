@@ -95,6 +95,16 @@ public class BankManagerFrame {
                 update_requests();
             }
         });
+        setUsernameAndPasswordButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (names_requested.getItemCount() != 0) {
+                    String s = (String)names_requested.getSelectedItem();
+                    SetCredentialsFrame set_c_frame = new SetCredentialsFrame(s, bank_manager);
+                    set_c_frame.run();
+                }
+            }
+        });
     }
 
     public void run() {

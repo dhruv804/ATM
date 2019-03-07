@@ -17,8 +17,8 @@ public class CreditCard extends Debt{
     }
 
     @Override
-    public String get_account_type(){
-        return "Credit Card";
+    public String toString(){
+        return "Credit Card"+this.getAccount_num();
     }
 
 

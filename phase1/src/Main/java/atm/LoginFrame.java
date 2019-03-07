@@ -26,8 +26,20 @@ public class LoginFrame {
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                BankManagerFrame bank_manager_frame = new BankManagerFrame(bank_manager);
-                bank_manager_frame.run();
+                if (username_field.getText().equals("admin") && password_field.getText().equals("pass")) {
+                    BankManagerFrame bank_manager_frame = new BankManagerFrame(bank_manager);
+                    bank_manager_frame.run();
+                } else{
+                    User u = bank_manager.get_user_from_login(username_field.getText(), password_field.getText());
+
+                    if (u != null) {
+                        UserFrame user_frame = new UserFrame(u);
+                        user_frame.run();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Username and Password not found");
+                    }
+
+                }
             }
         });
 

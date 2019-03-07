@@ -17,7 +17,7 @@ public class LineOfCredit extends Debt {
     }
 
     @Override
-    public String get_account_type(){
-        return "Line of Credit";
+    public String toString(){
+        return "Line of Credit"+this.getAccount_num();
     }
 }

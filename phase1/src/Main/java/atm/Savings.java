@@ -29,7 +29,13 @@ public class Savings extends Asset{
     }
 
     @Override
-    public String get_account_type(){
-        return "Savings";
+    public String toString(){
+        return "Savings" + this.getAccount_num();
+    }
+
+    public String get_account_details(){
+        String l1 = "Account Type: Savings\n";
+        String l2 = "Balance: " + this.getBalance() + "\n";
+        return l1+l2;
     }
 }
