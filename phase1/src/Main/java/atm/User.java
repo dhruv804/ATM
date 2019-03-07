@@ -63,4 +63,16 @@ public class User {
         this.account_list.add(account);
     }
 
+    public double get_net_total(){
+        double total = 0;
+        for (Account a : account_list){
+            if (a instanceof Chequing || a instanceof Savings){
+                total += a.balance;
+            }
+            else if (a instanceof CreditCard || a instanceof LineOfCredit){
+                total -= a.balance;
+            }
+        }
+        return total;
+    }
 }

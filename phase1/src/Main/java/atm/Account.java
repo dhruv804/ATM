@@ -3,12 +3,14 @@ package atm;
 public abstract class Account {
     private static int account_count = 0;
     private int account_num;
+    protected double balance;
     //private User user;
 
 
     public Account(){
         account_count++;
         account_num = account_count;
+        this.balance = 0;
         //this.user = user;
     }
 
