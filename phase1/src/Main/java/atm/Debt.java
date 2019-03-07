@@ -8,6 +8,10 @@ public abstract class Debt extends Account{
         return balance;
     }
 
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
     public Debt(){
         super();
         this.balance = 0;

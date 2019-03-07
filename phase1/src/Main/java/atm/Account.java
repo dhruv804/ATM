@@ -6,6 +6,9 @@ public abstract class Account {
     protected double balance;
     //private User user;
 
+    public abstract double getBalance();
+
+    public abstract void setBalance(double balance);
 
     public Account(){
         account_count++;

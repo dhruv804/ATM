@@ -22,6 +22,8 @@ public class LoginFrame {
 
     public LoginFrame(BankManager bank_manager) {
         this.bank_manager = bank_manager;
+        username_field.setText("vshah");
+        password_field.setText("cool");
 
         submitButton.addActionListener(new ActionListener() {
             @Override
