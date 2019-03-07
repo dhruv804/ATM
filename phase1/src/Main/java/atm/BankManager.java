@@ -17,6 +17,7 @@ public class BankManager {
     ArrayList<User> all_users = new ArrayList<>();
     ArrayList<String> pending_user_requests = new ArrayList<>();
 
+
     /**
      * This method adds user to all_accounts if user is not already in all_accounts
      * @param user is the user being added to all_accounts
@@ -82,5 +83,14 @@ public class BankManager {
             return  true;
         }
         else{return false;}
+    }
+
+    public User get_user_from_login(String username, String password){
+        for (User u : all_users){
+            if (u.get_user_id().equals(username) && u.get_user_pass().equals(password)){
+                return u;
+            }
+        }
+        return null;
     }
 }

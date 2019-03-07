@@ -32,6 +32,10 @@ public class User {
         return this.user_id;
     }
 
+    public String get_user_pass() {
+        return user_pass;
+    }
+
     public String get_Name() {
         return name;
     }
