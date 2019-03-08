@@ -101,6 +101,8 @@ public class UserFrame {
                 update_slider();
             }
         });
+
+
     }
 
     public void run(){
@@ -130,7 +132,7 @@ public class UserFrame {
             return;
         }
         Account acc = (Account) comboBox2.getSelectedItem();
-        int max_num = 500;
+        int max_num = 200;
         if (acc instanceof Savings) {
             double max_double = ((Savings) acc).getBalance();
             int max_int = (int) java.lang.Math.floor(max_double);
@@ -144,6 +146,7 @@ public class UserFrame {
             }
         }
         if (max_num < 0) max_num = 0;
+        else if (max_num > 200) max_num = 200;
 
         slider1.setMinimum(0);
         slider1.setMaximum(max_num);
