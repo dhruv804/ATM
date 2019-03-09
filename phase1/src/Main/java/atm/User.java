@@ -13,6 +13,7 @@ public class User {
     public User(String name, String user_id, String user_pass) {
         this.name = name;
         this.account_list = new ArrayList<>();
+        this.requested_accounts = new ArrayList<>();
         this.user_id = user_id;
         this.user_pass = user_pass;
     }
@@ -24,7 +25,7 @@ public class User {
      * @param account_type: The type of account requested for
      */
     public void request_account(Account account_type){
-        Request req = new Request(this,account_type);
+        Request req = new Request(this, account_type);
         requested_accounts.add(req);
     }
 
@@ -75,4 +76,6 @@ public class User {
         }
         return total;
     }
+
+
 }

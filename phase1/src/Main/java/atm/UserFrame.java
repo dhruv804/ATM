@@ -29,6 +29,9 @@ public class UserFrame {
     private JTextArea selectAnAccountToTextArea;
     private JButton withdrawButton;
     private JTextArea balanceTextArea;
+    private JTextArea pleaseSelectAnAccountTextArea;
+    private JComboBox comboBox3;
+    private JButton applyButton;
     private User user;
 
 
@@ -92,9 +95,10 @@ public class UserFrame {
 
                 int amount = slider1.getValue();
                 if (acc.withdraw(amount)){
-                    System.out.println("Successfully withdrawn");
+                    JOptionPane.showMessageDialog(null, "Successfully withdrawn $" +
+                            String.valueOf(amount));
                 } else {
-                    System.out.println("Failed withdrawal");
+                    JOptionPane.showMessageDialog(null, "Failed withdrawal");
                 }
 
                 update_accounts();
@@ -103,6 +107,33 @@ public class UserFrame {
         });
 
 
+        applyButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String r = (String) comboBox3.getSelectedItem();
+                System.out.println(r);
+
+                switch(r){
+                    case "Savings":
+                        user.request_account(new Savings());
+                        JOptionPane.showMessageDialog(null, "Savings Account Requested.");
+                        break;
+                    case "Credit Card":
+                        user.request_account(new CreditCard());
+                        JOptionPane.showMessageDialog(null, "Credit Card Account Requested.");
+                        break;
+                    case "Chequing":
+                        user.request_account(new Chequing());
+                        JOptionPane.showMessageDialog(null, "Chequing Account Requested.");
+                        break;
+                    case "Line of Credit":
+                        user.request_account(new LineOfCredit());
+                        JOptionPane.showMessageDialog(null, "Line of Credit Account Requested.");
+                        break;
+                }
+
+            }
+        });
     }
 
     public void run(){
