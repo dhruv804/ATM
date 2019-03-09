@@ -54,12 +54,12 @@ public class BankManager {
         machine.restock_machine();
     }
 
-    private void update_requests(){
+    protected void update_requests(){
+        pending_acc_requests.clear();
         for (User u : all_users){
             this.pending_acc_requests.addAll(u.requested_accounts);
         }
 
-        //TODO: Update User requests as well
     }
 
     public void create_user_request(String name){

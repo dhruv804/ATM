@@ -28,7 +28,7 @@ public class LoginFrame {
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (username_field.getText().equals("admin") && password_field.getText().equals("pass")) {
+                if (username_field.getText().equals("vsha") && password_field.getText().equals("cool")) { //TODO: CHange
                     BankManagerFrame bank_manager_frame = new BankManagerFrame(bank_manager);
                     bank_manager_frame.run();
                 } else{

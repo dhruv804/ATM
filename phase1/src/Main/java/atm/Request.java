@@ -13,9 +13,14 @@ public class Request{
     }
 
     public String get_info(){
-        String n = "Name: " + user_requesting.get_Name() + "; ";
-        String i = "ID: " + user_requesting.get_user_id() + "; ";
-        String a = "Account Type Requested: " + account_requested.toString() + ";";
+        String n = "Name: " + user_requesting.get_Name() + "; \n";
+        String i = "ID: " + user_requesting.get_user_id() + "; \n";
+        String a = "Account Type Requested: " + account_requested.toString() + ";\n";
         return n+i+a;
+    }
+
+    @Override
+    public String toString(){
+        return user_requesting.name;
     }
 }

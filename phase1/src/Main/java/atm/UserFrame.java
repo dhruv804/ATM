@@ -75,10 +75,10 @@ public class UserFrame {
                 Account temp_acc = (Account)comboBox1.getSelectedItem();
                 String s1 = temp_acc.get_account_details();
                 String s2 = "Net Balance: " + String.valueOf(user.get_net_total()) + "\n";
+                System.out.println(user.get_net_total());
                 details_area.setText(s1+s2);
             }
         });
-
         changePasswordButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -129,8 +129,12 @@ public class UserFrame {
             public void actionPerformed(ActionEvent e) {
                 Account from_acc = (Account)comboBox3.getSelectedItem();
                 Account to_acc = (Account)comboBox4.getSelectedItem();
-                double amt = Integer.valueOf(amount.getText());
-                user.transfer(from_acc, to_acc, amt);
+                double amt = Double.valueOf(amount.getText()); //TODO: Check if double
+                if (user.transfer(from_acc, to_acc, amt)){
+                    JOptionPane.showMessageDialog(null, "Transfer Successful.");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Transfer Failed.");
+                }
             }
         });
         transferButton1.addActionListener(new ActionListener() {
@@ -154,7 +158,7 @@ public class UserFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Account acc = (Account)comboBox7.getSelectedItem();
-                double amt = Integer.valueOf(amount4.getText());
+                double amt = Double.valueOf(amount4.getText());
                 user.deposit(acc, amt);
                 String s1 = "Deposit Successful!" + "\n";
                 String s2 = acc.get_account_details();
@@ -246,7 +250,7 @@ public class UserFrame {
             return;
         }
         Account acc = (Account) comboBox2.getSelectedItem();
-        int max_num = 500;
+        int max_num = 200;
         if (acc instanceof Savings) {
             double max_double = acc.getBalance();
             int max_int = (int) java.lang.Math.floor(max_double);
@@ -260,6 +264,7 @@ public class UserFrame {
             }
         }
         if (max_num < 0) max_num = 0;
+        if (max_num > 200) max_num = 200;
 
         slider1.setMinimum(0);
         slider1.setMaximum(max_num);

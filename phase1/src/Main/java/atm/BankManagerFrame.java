@@ -1,5 +1,7 @@
 package atm;
 
+import com.sun.org.apache.regexp.internal.RE;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,6 +30,8 @@ public class BankManagerFrame {
     private JComboBox names_requested;
     private JButton setUsernameAndPasswordButton;
     private JButton refresh_user_requests;
+    private JButton createButton;
+    private JButton rejectButton;
     private static Machine machine = new Machine();
     private static BankManager bank_manager;
 
@@ -107,6 +111,42 @@ public class BankManagerFrame {
                 }
             }
         });
+        account_select.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (account_select.getItemCount() == 0) return;
+
+                Request r = (Request) account_select.getSelectedItem();
+                accountDetailsTextArea.setText(r.get_info());
+            }
+        });
+        createButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (account_select.getItemCount() == 0) return;
+
+                Request r = (Request) account_select.getSelectedItem();
+                User u = r.user_requesting;
+                u.requested_accounts.remove(r);
+                bank_manager.pending_acc_requests.remove(r);
+                u.add_account(r.account_requested);
+                update_requests();
+                accountDetailsTextArea.setText("");
+            }
+        });
+        rejectButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (account_select.getItemCount() == 0) return;
+
+                Request r = (Request) account_select.getSelectedItem();
+                User u = r.user_requesting;
+                u.requested_accounts.remove(r);
+                bank_manager.pending_acc_requests.remove(r);
+                update_requests();
+                accountDetailsTextArea.setText("");
+            }
+        });
     }
 
     public void run() {
@@ -133,6 +173,8 @@ public class BankManagerFrame {
     }
 
     public void update_requests(){
+        bank_manager.update_requests();
+        account_select.removeAllItems();
         for (Request r: bank_manager.pending_acc_requests){
             account_select.addItem(r);
         }

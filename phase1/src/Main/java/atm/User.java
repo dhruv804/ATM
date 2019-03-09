@@ -72,10 +72,10 @@ public class User {
         double total = 0;
         for (Account a : account_list){
             if (a instanceof Chequing || a instanceof Savings){
-                total += a.balance;
+                total += a.getBalance();
             }
             else if (a instanceof CreditCard || a instanceof LineOfCredit){
-                total -= a.balance;
+                total -= a.getBalance();
             }
         }
         return total;
