@@ -34,13 +34,28 @@ public class User {
     }
 
     public boolean transfer(Account from, User to, double amount) {
-        from. withdraw(amount);
+        if (from.withdraw(amount)){
+            to.deposit(amount);
+            return true;
+        }
         return false;
         //TODO: UNFINISHED
     }
 
     public void deposit(Account acc, double amount){
         acc.deposit(amount);
+    }
+    public Account get_primary_chequing(){
+        for (Account a : account_list){
+            if (a instanceof Chequing){
+                if (((Chequing) a).default_chequing){return a;}
+            }
+        }
+        return null;
+    }
+    public void deposit(double amount){
+        Account primary = get_primary_chequing();
+        primary.deposit(amount);
     }
 
     public boolean transfer(Account from, double amount) {

@@ -2,7 +2,7 @@ package atm;
 
 public class Chequing extends Asset{
 
-    private boolean default_chequing;
+    protected boolean default_chequing;
 
     public Chequing() {
         super();

@@ -31,7 +31,7 @@ public class LoginFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (username_field.getText().equals("vsha") && password_field.getText().equals("cool")) { //TODO: CHange
-                    BankManagerFrame bank_manager_frame = new BankManagerFrame(bank_manager);
+                    BankManagerFrame bank_manager_frame = new BankManagerFrame(bank_manager,machine);
                     bank_manager_frame.run();
                 } else{
                     User u = bank_manager.get_user_from_login(username_field.getText(), password_field.getText());

@@ -32,12 +32,13 @@ public class BankManagerFrame {
     private JButton refresh_user_requests;
     private JButton createButton;
     private JButton rejectButton;
-    private static Machine machine = new Machine();
+    private static Machine machine;
     private static BankManager bank_manager;
 
 
-    public BankManagerFrame(BankManager bank_manager) {
+    public BankManagerFrame(BankManager bank_manager, Machine machine) {
         this.bank_manager = bank_manager;
+        this.machine = machine;
         update_bill_amounts();
         refreshButton.addActionListener(new ActionListener() {
             @Override
@@ -151,7 +152,7 @@ public class BankManagerFrame {
 
     public void run() {
         JFrame frame = new JFrame("Bank Manager");
-        frame.setContentPane(new BankManagerFrame(bank_manager).tabbedPane1);
+        frame.setContentPane(tabbedPane1);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);

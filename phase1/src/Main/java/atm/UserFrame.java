@@ -145,8 +145,19 @@ public class UserFrame {
                 Account from_acc = (Account)comboBox5.getSelectedItem();
                 double amt = Double.valueOf(amount2.getText());
                 String user_name = username.getText();
+                machine.update_users();
+                User u = machine.username_exists(user_name);
 
-
+                if (u != null){
+                    if (u.transfer(from_acc,u,amt)) {
+                        JOptionPane.showMessageDialog(null, "Transfer Successful.");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Transfer Failed.");
+                    }
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Transfer Failed.");
+                }
             }
         });
         transferButton2.addActionListener(new ActionListener() {
@@ -194,11 +205,12 @@ public class UserFrame {
                 }
             }
         });
+
     }
 
     public void run(){
         JFrame frame = new JFrame(user.get_Name());
-        frame.setContentPane(new UserFrame(user, machine).user_jpanel);
+        frame.setContentPane(user_jpanel);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
@@ -231,7 +243,11 @@ public class UserFrame {
 
         for (Account acc : user.account_list){
             if (((DefaultComboBoxModel)comboBox5.getModel()).getIndexOf(acc) == -1) {
-                comboBox5.addItem(acc);
+                if (acc instanceof CreditCard){
+                    ;
+                } else {
+                    comboBox5.addItem(acc);
+                }
             }
         }
 

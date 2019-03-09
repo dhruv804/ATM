@@ -12,13 +12,15 @@ public class Machine {
     public int total_cash = 0;
     private String path = "group_0315/phase1/alerts.txt";
     private ArrayList<User> all_users = new ArrayList<>();
+    private BankManager manager;
 
-    public Machine() {
+    public Machine(BankManager manager) {
         number_of_bills.put(5, 0);
         number_of_bills.put(10, 0);
         number_of_bills.put(20, 0);
         number_of_bills.put(50, 0);
         number_of_bills.put(100, 0);
+        this.manager = manager;
     }
 
     public int get_total_cash(){
@@ -124,6 +126,11 @@ public class Machine {
         for (int i : denominations) {
             restock_bill(i, cur_map.get(i));
 
+        }
+    }
+    public void update_users(){
+        for (User u : manager.all_users){
+            all_users.add(u);
         }
     }
 
