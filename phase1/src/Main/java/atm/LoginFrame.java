@@ -1,13 +1,15 @@
 package atm;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 
 /**
  * Created by vedantshah on 2019-03-06.
  */
-public class LoginFrame {
+public class LoginFrame{
     private JTextArea usernameTextArea;
     private JTextField username_field;
     private JTextArea passwordTextArea;
@@ -18,8 +20,10 @@ public class LoginFrame {
     private JButton apply;
     private JTextField name_field;
     private JTextPane enter_name;
+    private JButton ENDDAYButton;
     private BankManager bank_manager;
     private Machine machine;
+    private JFrame frame;
 
     public LoginFrame(BankManager bank_manager, Machine machine) {
         this.bank_manager = bank_manager;
@@ -55,13 +59,35 @@ public class LoginFrame {
                 name_field.setText("");
             }
         });
+
+
+        ENDDAYButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String filename = "phase1/final.ser";
+                File tmp = new File(filename);
+
+                try {
+                    FileOutputStream file = new FileOutputStream(filename);
+                    ObjectOutputStream out = new ObjectOutputStream(file);
+                    out.writeObject(machine);
+                    out.close();
+                    file.close();
+                    frame.dispose();
+                } catch (Exception f) {
+                    System.out.println(f);
+                }
+
+                System.out.println("Object has been serialized");
+            }
+        });
     }
 
     public void run(){
 
-        JFrame frame = new JFrame("Login");
-        frame.setContentPane(new LoginFrame(bank_manager, machine).login_jframe);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame = new JFrame("Login");
+        frame.setContentPane(login_jframe);
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
 

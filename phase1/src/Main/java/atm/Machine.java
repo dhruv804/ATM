@@ -15,6 +15,7 @@ public class Machine implements Serializable{
     private String path = "group_0315/phase1/alerts.txt";
     private ArrayList<User> all_users = new ArrayList<>();
     private BankManager manager;
+    private static int serialVersionUID = 55;
 
     public Machine(BankManager manager) {
         number_of_bills.put(5, 0);
@@ -143,5 +144,8 @@ public class Machine implements Serializable{
         return null;
     }
 
+    public BankManager getManager(){
+        return manager;
+    }
 
 }
