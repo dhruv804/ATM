@@ -49,6 +49,9 @@ public class UserFrame {
     private JTextField amount4;
     private JButton depositButton;
     private JTextArea depositdetails;
+    private JTextPane pleaseSelectAnAccountTextPane;
+    private JComboBox comboBox8;
+    private JButton applyButton;
     private User user;
 
 
@@ -156,6 +159,32 @@ public class UserFrame {
                 String s1 = "Deposit Successful!" + "\n";
                 String s2 = acc.get_account_details();
                 depositdetails.setText(s1 + s2);
+            }
+        });
+        applyButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String r = (String) comboBox8.getSelectedItem();
+                System.out.println(r);
+
+                switch (r){
+                    case "Savings":
+                        user.request_account(new Savings());
+                        JOptionPane.showMessageDialog(null, "Saving account requested.");
+                        break;
+                    case "Chequing":
+                        user.request_account(new Chequing());
+                        JOptionPane.showMessageDialog(null, "Chequing account requested.");
+                        break;
+                    case "Credit Card":
+                        user.request_account(new CreditCard());
+                        JOptionPane.showMessageDialog(null, "Credit Card account requested.");
+                        break;
+                    case "Line of Credit":
+                        user.request_account(new LineOfCredit());
+                        JOptionPane.showMessageDialog(null, "Line of Credit account requested.");
+                        break;
+                }
             }
         });
     }
