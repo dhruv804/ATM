@@ -17,10 +17,11 @@ public class Main {
         CreditCard c = new CreditCard();
         LineOfCredit d = new LineOfCredit();
         a.setBalance(-1);
-        b.setBalance(152);
-        b.balance = 152;
+        b.setBalance(251);
         u.add_account(a);
         u.add_account(b);
+        u.add_account(c);
+        u.add_account(d);
         bank_manager.all_users.add(u);
         bank_manager.all_users.add(u2);
         LoginFrame login_frame = new LoginFrame(bank_manager);
