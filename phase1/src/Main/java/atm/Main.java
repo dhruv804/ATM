@@ -9,6 +9,7 @@ import javax.swing.*;
 public class Main {
 
     public static void main(String[] args) {
+        Machine machine = new Machine();
         BankManager bank_manager = new BankManager();
         User u = new User("Ved", "vshah", "cool");
         User u2 = new User("Empty", "empty", "empty");
@@ -24,7 +25,7 @@ public class Main {
         u.add_account(d);
         bank_manager.all_users.add(u);
         bank_manager.all_users.add(u2);
-        LoginFrame login_frame = new LoginFrame(bank_manager);
+        LoginFrame login_frame = new LoginFrame(bank_manager, machine);
         login_frame.run();
     }
 

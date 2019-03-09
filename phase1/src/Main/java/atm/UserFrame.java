@@ -53,10 +53,12 @@ public class UserFrame {
     private JComboBox comboBox8;
     private JButton applyButton;
     private User user;
+    private Machine machine;
 
 
-    public UserFrame(User user) {
+    public UserFrame(User user, Machine machine) {
         this.user = user;
+        this.machine = machine;
         update_accounts();
 
         refreshButton.addActionListener(new ActionListener() {
@@ -141,8 +143,9 @@ public class UserFrame {
             @Override
             public void actionPerformed(ActionEvent e) {//TODO: Finish this
                 Account from_acc = (Account)comboBox5.getSelectedItem();
-                double amt = Integer.valueOf(amount2.getText());
+                double amt = Double.valueOf(amount2.getText());
                 String user_name = username.getText();
+
 
             }
         });
@@ -195,7 +198,7 @@ public class UserFrame {
 
     public void run(){
         JFrame frame = new JFrame(user.get_Name());
-        frame.setContentPane(new UserFrame(user).user_jpanel);
+        frame.setContentPane(new UserFrame(user, machine).user_jpanel);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
