@@ -19,9 +19,11 @@ public class LoginFrame {
     private JTextField name_field;
     private JTextPane enter_name;
     private BankManager bank_manager;
+    private Machine machine;
 
-    public LoginFrame(BankManager bank_manager) {
+    public LoginFrame(BankManager bank_manager, Machine machine) {
         this.bank_manager = bank_manager;
+        this.machine = machine;
         username_field.setText("vshah");
         password_field.setText("cool");
 
@@ -35,7 +37,7 @@ public class LoginFrame {
                     User u = bank_manager.get_user_from_login(username_field.getText(), password_field.getText());
 
                     if (u != null) {
-                        UserFrame user_frame = new UserFrame(u);
+                        UserFrame user_frame = new UserFrame(u, machine);
                         user_frame.run();
                     } else {
                         JOptionPane.showMessageDialog(null, "Username and Password not found");
@@ -58,7 +60,7 @@ public class LoginFrame {
     public void run(){
 
         JFrame frame = new JFrame("Login");
-        frame.setContentPane(new LoginFrame(bank_manager).login_jframe);
+        frame.setContentPane(new LoginFrame(bank_manager, machine).login_jframe);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);

@@ -1,5 +1,7 @@
 package atm;
 
+import java.security.cert.TrustAnchor;
+
 public abstract class Asset extends Account{
 
     protected double balance;
@@ -25,11 +27,8 @@ public abstract class Asset extends Account{
 
     @Override
     public boolean withdraw(double amount) {
-        if(balance >= amount){
-            balance -= amount;
-            return true;
-        }
-        return false;
+        balance -= amount;
+        return true;
     }
 
 
