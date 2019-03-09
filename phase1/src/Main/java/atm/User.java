@@ -38,6 +38,10 @@ public class User {
         //TODO: UNFINISHED
     }
 
+    public void deposit(Account acc, double amount){
+        acc.deposit(amount);
+    }
+
     public boolean transfer(Account from, double amount) {
         return from.withdraw(amount);
     }

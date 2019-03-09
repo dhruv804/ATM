@@ -29,6 +29,26 @@ public class UserFrame {
     private JTextArea selectAnAccountToTextArea;
     private JButton withdrawButton;
     private JTextArea balanceTextArea;
+    private JTextArea transferBetweenAccountsTextArea;
+    private JTextArea transferToAnotherUserTextArea;
+    private JTextArea payABillTextArea;
+    private JTextField amount;
+    private JComboBox comboBox3;
+    private JComboBox comboBox4;
+    private JComboBox comboBox5;
+    private JTextField username;
+    private JTextField amount2;
+    private JComboBox comboBox6;
+    private JTextField payee_name;
+    private JTextField amount3;
+    private JButton transferButton;
+    private JButton transferButton1;
+    private JButton transferButton2;
+    private JTabbedPane tabbedPane2;
+    private JComboBox comboBox7;
+    private JTextField amount4;
+    private JButton depositButton;
+    private JTextArea depositdetails;
     private User user;
 
 
@@ -101,6 +121,43 @@ public class UserFrame {
                 update_slider();
             }
         });
+        transferButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Account from_acc = (Account)comboBox3.getSelectedItem();
+                Account to_acc = (Account)comboBox4.getSelectedItem();
+                double amt = Integer.valueOf(amount.getText());
+                user.transfer(from_acc, to_acc, amt);
+            }
+        });
+        transferButton1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {//TODO: Finish this
+                Account from_acc = (Account)comboBox5.getSelectedItem();
+                double amt = Integer.valueOf(amount2.getText());
+                String user_name = username.getText();
+
+            }
+        });
+        transferButton2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Account from_acc = (Account)comboBox6.getSelectedItem();
+                double amt = Integer.valueOf(amount3.getText());
+                user.transfer(from_acc, amt);
+            }
+        });
+        depositButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Account acc = (Account)comboBox7.getSelectedItem();
+                double amt = Integer.valueOf(amount4.getText());
+                user.deposit(acc, amt);
+                String s1 = "Deposit Successful!" + "\n";
+                String s2 = acc.get_account_details();
+                depositdetails.setText(s1 + s2);
+            }
+        });
     }
 
     public void run(){
@@ -123,6 +180,36 @@ public class UserFrame {
                 comboBox2.addItem(acc);
             }
         }
+
+        for (Account acc : user.account_list){
+            if (((DefaultComboBoxModel)comboBox3.getModel()).getIndexOf(acc) == -1) {
+                comboBox3.addItem(acc);
+            }
+        }
+
+        for (Account acc : user.account_list){
+            if (((DefaultComboBoxModel)comboBox4.getModel()).getIndexOf(acc) == -1) {
+                comboBox4.addItem(acc);
+            }
+        }
+
+        for (Account acc : user.account_list){
+            if (((DefaultComboBoxModel)comboBox5.getModel()).getIndexOf(acc) == -1) {
+                comboBox5.addItem(acc);
+            }
+        }
+
+        for (Account acc : user.account_list){
+            if (((DefaultComboBoxModel)comboBox6.getModel()).getIndexOf(acc) == -1) {
+                comboBox6.addItem(acc);
+            }
+        }
+
+        for (Account acc : user.account_list){
+            if (((DefaultComboBoxModel)comboBox7.getModel()).getIndexOf(acc) == -1) {
+                comboBox7.addItem(acc);
+            }
+        }
     }
 
     public void update_slider(){
@@ -132,11 +219,11 @@ public class UserFrame {
         Account acc = (Account) comboBox2.getSelectedItem();
         int max_num = 500;
         if (acc instanceof Savings) {
-            double max_double = ((Savings) acc).getBalance();
+            double max_double = acc.getBalance();
             int max_int = (int) java.lang.Math.floor(max_double);
             max_num = (max_int / 5) * 5;
         } else if (acc instanceof Chequing){
-            double max_double = ((Chequing) acc).getBalance();
+            double max_double = acc.getBalance();
             int max_int = (int) java.lang.Math.floor(max_double);
             max_num = (max_int / 5) * 5;
             if (max_double>=0){
