@@ -1,5 +1,6 @@
 package atm;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.io.FileWriter;
@@ -10,6 +11,7 @@ public class Machine {
     public Map<Integer, Integer> number_of_bills = new HashMap<Integer, Integer>();
     public int total_cash = 0;
     private String path = "group_0315/phase1/alerts.txt";
+    private ArrayList<User> all_users = new ArrayList<>();
 
     public Machine() {
         number_of_bills.put(5, 0);
@@ -123,6 +125,13 @@ public class Machine {
             restock_bill(i, cur_map.get(i));
 
         }
+    }
+
+    public boolean username_exists(String username){
+        for (User u : all_users){
+            if (u.get_user_id().equals(username)) return true;
+        }
+        return false;
     }
 
 }
