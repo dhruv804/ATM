@@ -1,8 +1,9 @@
 package atm;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class User {
+public class User implements Serializable {
     protected String name;
     protected ArrayList<Request> requested_accounts; //list of requested accounts from all users
     protected ArrayList<Account> account_list;
@@ -13,6 +14,8 @@ public class User {
     public User(String name, String user_id, String user_pass) {
         this.name = name;
         this.account_list = new ArrayList<>();
+        account_list.add(new Chequing());
+        account_list.add(new Savings());
         this.requested_accounts = new ArrayList<>();
         this.user_id = user_id;
         this.user_pass = user_pass;

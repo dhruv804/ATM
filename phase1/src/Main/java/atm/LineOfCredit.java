@@ -1,6 +1,8 @@
 package atm;
 
-public class LineOfCredit extends Debt {
+import java.io.Serializable;
+
+public class LineOfCredit extends Debt implements Serializable {
 
     public LineOfCredit() {
         super();

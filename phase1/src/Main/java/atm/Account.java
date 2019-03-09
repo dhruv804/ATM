@@ -1,6 +1,8 @@
 package atm;
 
-public abstract class Account {
+import java.io.Serializable;
+
+public abstract class Account implements Serializable {
     private static int account_count = 0;
     private int account_num;
     protected double balance;

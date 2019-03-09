@@ -1,6 +1,8 @@
 package atm;
 
-public abstract class Debt extends Account{
+import java.io.Serializable;
+
+public abstract class Debt extends Account implements Serializable {
 
     protected double balance;
 

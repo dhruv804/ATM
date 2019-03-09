@@ -1,6 +1,8 @@
 package atm;
 
-public class Savings extends Asset{
+import java.io.Serializable;
+
+public class Savings extends Asset implements Serializable {
 
     static private double interest_rate = 0.001;
 

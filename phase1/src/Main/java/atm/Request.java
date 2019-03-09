@@ -1,9 +1,11 @@
 package atm;
 
+import java.io.Serializable;
+
 /**
  * Created by vedantshah on 2019-03-06.
  */
-public class Request{
+public class Request implements Serializable {
     User user_requesting;
     Account account_requested;
 

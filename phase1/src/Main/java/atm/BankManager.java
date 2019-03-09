@@ -2,13 +2,14 @@ package atm;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
  * Created by vedantshah on 2019-02-27.
  */
-public class BankManager {
+public class BankManager implements Serializable {
     /**
      * This is a class for requests, we will add it to the GUI so requests can be processed
      */

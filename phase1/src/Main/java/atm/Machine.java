@@ -1,5 +1,6 @@
 package atm;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -7,7 +8,8 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.IOException;
 
-public class Machine {
+public class Machine implements Serializable{
+
     public Map<Integer, Integer> number_of_bills = new HashMap<Integer, Integer>();
     public int total_cash = 0;
     private String path = "group_0315/phase1/alerts.txt";

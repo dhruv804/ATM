@@ -1,6 +1,8 @@
 package atm;
 
-public class Chequing extends Asset{
+import java.io.Serializable;
+
+public class Chequing extends Asset implements Serializable {
 
     protected boolean default_chequing;
 

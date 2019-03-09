@@ -1,6 +1,8 @@
 package atm;
 
-public class CreditCard extends Debt{
+import java.io.Serializable;
+
+public class CreditCard extends Debt implements Serializable {
 
     public CreditCard() {
         super();
