@@ -131,6 +131,10 @@ public class BankManagerFrame {
                 u.requested_accounts.remove(r);
                 bank_manager.pending_acc_requests.remove(r);
                 u.add_account(r.account_requested);
+                if (r.account_requested instanceof Chequing){
+                    Chequing c = (Chequing) r.account_requested;
+                    c.setDefault_chequing(false);
+                }
                 update_requests();
                 accountDetailsTextArea.setText("");
             }
