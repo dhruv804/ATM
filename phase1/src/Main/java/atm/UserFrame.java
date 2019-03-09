@@ -67,6 +67,12 @@ public class UserFrame {
                 for (Account acc : user.account_list){
                     if (((DefaultComboBoxModel)comboBox1.getModel()).getIndexOf(acc) == -1) { //TODO: Do similar for others
                         comboBox1.addItem(acc);
+                        comboBox2.addItem(acc);
+                        comboBox3.addItem(acc);
+                        comboBox4.addItem(acc);
+                        comboBox5.addItem(acc);
+                        comboBox6.addItem(acc);
+                        comboBox7.addItem(acc);
                     }
                 }
             }
@@ -121,7 +127,7 @@ public class UserFrame {
                 } else {
                     System.out.println("Failed withdrawal");
                 }
-
+                machine.withdraw(amount);
                 update_accounts();
                 update_slider();
             }
@@ -165,7 +171,12 @@ public class UserFrame {
             public void actionPerformed(ActionEvent e) {
                 Account from_acc = (Account)comboBox6.getSelectedItem();
                 double amt = Integer.valueOf(amount3.getText());
-                user.transfer(from_acc, amt);
+                if (user.transfer(from_acc, amt)){
+                    JOptionPane.showMessageDialog(null, "Transfer Successful.");
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Transfer Failed.");
+                }
             }
         });
         depositButton.addActionListener(new ActionListener() {
@@ -231,7 +242,11 @@ public class UserFrame {
 
         for (Account acc : user.account_list){
             if (((DefaultComboBoxModel)comboBox3.getModel()).getIndexOf(acc) == -1) {
-                comboBox3.addItem(acc);
+                if (acc instanceof CreditCard){
+                    ;
+                } else {
+                    comboBox3.addItem(acc);
+                }
             }
         }
 
@@ -253,7 +268,11 @@ public class UserFrame {
 
         for (Account acc : user.account_list){
             if (((DefaultComboBoxModel)comboBox6.getModel()).getIndexOf(acc) == -1) {
-                comboBox6.addItem(acc);
+                if (acc instanceof CreditCard){
+                    ;
+                } else {
+                    comboBox6.addItem(acc);
+                }
             }
         }
 

@@ -21,6 +21,8 @@ public class LoginFrame{
     private JTextField name_field;
     private JTextPane enter_name;
     private JButton ENDDAYButton;
+    private JTextField exit_user;
+    private JTextField exit_pass;
     private BankManager bank_manager;
     private Machine machine;
     private JFrame frame;
@@ -64,21 +66,28 @@ public class LoginFrame{
         ENDDAYButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String filename = "phase1/final.ser";
-                File tmp = new File(filename);
+                String s1 = exit_user.getText();
+                String s2 = exit_pass.getText();
+                if (s1.equals("vsha") && s2.equals("cool")) {
+                    String filename = "phase1/final.ser";
+                    File tmp = new File(filename);
 
-                try {
-                    FileOutputStream file = new FileOutputStream(filename);
-                    ObjectOutputStream out = new ObjectOutputStream(file);
-                    out.writeObject(machine);
-                    out.close();
-                    file.close();
-                    frame.dispose();
-                } catch (Exception f) {
-                    System.out.println(f);
+                    try {
+                        FileOutputStream file = new FileOutputStream(filename);
+                        ObjectOutputStream out = new ObjectOutputStream(file);
+                        out.writeObject(machine);
+                        out.close();
+                        file.close();
+                        frame.dispose();
+                    } catch (Exception f) {
+                        System.out.println(f);
+                    }
+
+                    System.out.println("Object has been serialized");
                 }
-
-                System.out.println("Object has been serialized");
+                else{
+                    JOptionPane.showMessageDialog(null, "Username and Password not found");
+                }
             }
         });
     }
