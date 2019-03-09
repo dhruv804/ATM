@@ -122,12 +122,16 @@ public class UserFrame {
                 Account acc = (Account) comboBox2.getSelectedItem();
 
                 int amount = slider1.getValue();
-                if (acc.withdraw(amount)){
-                    System.out.println("Successfully withdrawn");
+                if (machine.withdraw(amount) ){
+                    if (acc.withdraw(amount)) {
+                        System.out.println("Successfully withdrawn");
+                    } else {
+                        System.out.println("Failed withdrawal, account");
+                    }
                 } else {
-                    System.out.println("Failed withdrawal");
+                    System.out.println("Failed withdrawal, machine");
                 }
-                machine.withdraw(amount);
+
                 update_accounts();
                 update_slider();
             }

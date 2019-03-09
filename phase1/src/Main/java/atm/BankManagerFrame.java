@@ -32,6 +32,8 @@ public class BankManagerFrame {
     private JButton refresh_user_requests;
     private JButton createButton;
     private JButton rejectButton;
+    private JTextArea status_machine;
+    private JTextArea statusTextArea;
     private static Machine machine;
     private static BankManager bank_manager;
 
@@ -44,7 +46,14 @@ public class BankManagerFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 update_bill_amounts();
+                if (machine.needs_restocking()){
+                    status_machine.setText("STATUS: MACHINE NEEDS RESTOCKING!!");
+                }
+                else{
+                    status_machine.setText("STATUS: MACHINE STOCKED");
+                }
             }
+
         });
         button1.addActionListener(new ActionListener() {
             @Override

@@ -15,7 +15,7 @@ public class Machine implements Serializable{
     private String path = "group_0315/phase1/alerts.txt";
     private ArrayList<User> all_users = new ArrayList<>();
     private BankManager manager;
-    private static int serialVersionUID = 55;
+    private static int serialVersionUID = 75857858;
 
     public Machine(BankManager manager) {
         number_of_bills.put(5, 0);
@@ -39,6 +39,25 @@ public class Machine implements Serializable{
         } catch (NullPointerException n){
             return -1;
         }
+    }
+
+    public boolean needs_restocking(){
+        if (get_number_of(5) < 20){
+            return true;
+        }
+        else if (get_number_of(10) < 20){
+            return true;
+        }
+        else if (get_number_of(20) < 20){
+            return true;
+        }
+        else if (get_number_of(50) < 20){
+            return true;
+        }
+        else if (get_number_of(100) < 20){
+            return true;
+        }
+        else{return false;}
     }
 
 
@@ -83,20 +102,49 @@ public class Machine implements Serializable{
             return false;
         }
 
-        int prev = 5;
-
-        while(cash > 0) {
-            for (int i : number_of_bills.keySet()) {
-                if (i > cash) {
-                    cash -= prev;
-                    number_of_bills.replace(prev, number_of_bills.get(prev) - 1);
-                    prev = 5;
-                } else {
-                    prev = i;
-                }
+        int num_5_taken = 0;
+        int num_10_taken = 0;
+        int num_20_taken = 0;
+        int num_50_taken = 0;
+        int num_100_taken = 0;
+        int money_taken = 0;
+        while (money_taken < cash){
+            if (cash - money_taken >= 100 && this.get_number_of(100) > 0){
+                num_100_taken += 1;
+                money_taken += 100;
+            } else if (cash - money_taken >= 50 && this.get_number_of(50) > 0){
+                num_50_taken += 1;
+                money_taken += 50;
+            } else if (cash - money_taken >= 20 && this.get_number_of(20) > 0){
+                num_20_taken += 1;
+                money_taken += 20;
+            } else if (cash - money_taken >= 10 && this.get_number_of(10) > 0){
+                num_10_taken += 1;
+                money_taken += 10;
+            } else if (cash - money_taken >= 5 && this.get_number_of(5) > 0){
+                num_5_taken += 1;
+                money_taken += 5;
+            } else {
+                break;
             }
         }
-        return true;
+
+        if (money_taken == cash) {
+            this.restock_bill(5, 0- num_5_taken);
+            this.restock_bill(10, 0- num_10_taken);
+            this.restock_bill(20, 0- num_20_taken);
+            this.restock_bill(50, 0- num_50_taken);
+            this.restock_bill(100, 0- num_100_taken);
+            return true;
+        }
+        else {
+            this.restock_bill(5, num_5_taken);
+            this.restock_bill(10, num_10_taken);
+            this.restock_bill(20, num_20_taken);
+            this.restock_bill(50, num_50_taken);
+            this.restock_bill(100, num_100_taken);
+            return false;
+        }
     }
 
     /**
