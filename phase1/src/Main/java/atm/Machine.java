@@ -127,11 +127,12 @@ public class Machine {
         }
     }
 
-    public boolean username_exists(String username){
+    public User username_exists(String username){
         for (User u : all_users){
-            if (u.get_user_id().equals(username)) return true;
+            if (u.get_user_id().equals(username)) return u;
         }
-        return false;
+        return null;
     }
+
 
 }
