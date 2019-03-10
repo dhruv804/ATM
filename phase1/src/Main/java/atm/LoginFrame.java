@@ -5,6 +5,9 @@ import java.awt.event.*;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by vedantshah on 2019-03-06.
@@ -27,16 +30,18 @@ public class LoginFrame{
     private Machine machine;
     private JFrame frame;
 
+
     public LoginFrame(BankManager bank_manager, Machine machine) {
         this.bank_manager = bank_manager;
         this.machine = machine;
-        username_field.setText("vshah");
-        password_field.setText("cool");
+        username_field.setText("");
+        password_field.setText("");
+        machine.depositInterest();
 
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (username_field.getText().equals("vsha") && password_field.getText().equals("cool")) { //TODO: CHange
+                if (username_field.getText().equals("admin") && password_field.getText().equals("pass")) {
                     BankManagerFrame bank_manager_frame = new BankManagerFrame(bank_manager,machine);
                     bank_manager_frame.run();
                 } else{
@@ -68,10 +73,11 @@ public class LoginFrame{
             public void actionPerformed(ActionEvent e) {
                 String s1 = exit_user.getText();
                 String s2 = exit_pass.getText();
-                if (s1.equals("vsha") && s2.equals("cool")) {
+                if (s1.equals("admin") && s2.equals("pass")) {
                     String filename = "phase1/final.ser";
                     File tmp = new File(filename);
-
+                    //System.out.println(machine.getDate());
+                    machine.nextDay();
                     try {
                         FileOutputStream file = new FileOutputStream(filename);
                         ObjectOutputStream out = new ObjectOutputStream(file);
@@ -83,11 +89,13 @@ public class LoginFrame{
                         System.out.println(f);
                     }
 
-                    System.out.println("Object has been serialized");
+
+                    //System.out.println("Object has been serialized");
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "Username and Password not found");
                 }
+
             }
         });
     }
@@ -101,5 +109,6 @@ public class LoginFrame{
         frame.setVisible(true);
 
     }
+
 
 }

@@ -42,7 +42,6 @@ public class User implements Serializable {
             return true;
         }
         return false;
-        //TODO: UNFINISHED
     }
 
     public void deposit(Account acc, double amount){

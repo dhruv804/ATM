@@ -1,7 +1,10 @@
 package atm;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.io.FileWriter;
@@ -16,14 +19,16 @@ public class Machine implements Serializable{
     private ArrayList<User> all_users = new ArrayList<>();
     private BankManager manager;
     private static int serialVersionUID = 75857858;
+    private Date date;
 
-    public Machine(BankManager manager) {
+    public Machine(BankManager manager, Date date) {
         number_of_bills.put(5, 0);
         number_of_bills.put(10, 0);
         number_of_bills.put(20, 0);
         number_of_bills.put(50, 0);
         number_of_bills.put(100, 0);
         this.manager = manager;
+        this.date = date;
     }
 
     public int get_total_cash(){
@@ -61,24 +66,6 @@ public class Machine implements Serializable{
     }
 
 
-    public void create_alert(int denom) throws IOException{
-        try {
-
-            FileWriter write = new FileWriter(path, true);
-            PrintWriter print_alert = new PrintWriter(write);
-            print_alert.printf("Machine has less than 20 %d", denom); // maybe
-            print_alert.close();
-        }
-
-        catch (IOException e) {
-            System.out.println("Sorry manager - no can do!");
-
-        }
-
-        //Todo: try-catch using FileWriter and PrintWriter
-
-    }
-
     // Changed return type from boolean to void for bankmanager restock method
     public void restock_bill(int denom, int amount){ // Changed return type from boolean to void for bankmanager restock method
         int prev = get_number_of(denom);
@@ -110,18 +97,23 @@ public class Machine implements Serializable{
         int money_taken = 0;
         while (money_taken < cash){
             if (cash - money_taken >= 100 && this.get_number_of(100) > 0){
+                restock_bill(100, -1);
                 num_100_taken += 1;
                 money_taken += 100;
             } else if (cash - money_taken >= 50 && this.get_number_of(50) > 0){
+                restock_bill(50, -1);
                 num_50_taken += 1;
                 money_taken += 50;
             } else if (cash - money_taken >= 20 && this.get_number_of(20) > 0){
+                restock_bill(20, -1);
                 num_20_taken += 1;
                 money_taken += 20;
             } else if (cash - money_taken >= 10 && this.get_number_of(10) > 0){
+                restock_bill(10, -1);
                 num_10_taken += 1;
                 money_taken += 10;
             } else if (cash - money_taken >= 5 && this.get_number_of(5) > 0){
+                restock_bill(5, -1);
                 num_5_taken += 1;
                 money_taken += 5;
             } else {
@@ -129,21 +121,16 @@ public class Machine implements Serializable{
             }
         }
 
-        if (money_taken == cash) {
-            this.restock_bill(5, 0- num_5_taken);
-            this.restock_bill(10, 0- num_10_taken);
-            this.restock_bill(20, 0- num_20_taken);
-            this.restock_bill(50, 0- num_50_taken);
-            this.restock_bill(100, 0- num_100_taken);
-            return true;
-        }
-        else {
+        if (money_taken != cash) {
             this.restock_bill(5, num_5_taken);
             this.restock_bill(10, num_10_taken);
             this.restock_bill(20, num_20_taken);
             this.restock_bill(50, num_50_taken);
             this.restock_bill(100, num_100_taken);
             return false;
+        }
+        else {
+            return true;
         }
     }
 
@@ -194,6 +181,28 @@ public class Machine implements Serializable{
 
     public BankManager getManager(){
         return manager;
+    }
+
+    public void nextDay(){
+        this.date = new Date(this.date.getTime() + (1000*60*60*24));
+    }
+
+    public String getDate(){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        return  dateFormat.format(date);
+    }
+
+    public void depositInterest(){
+        update_users();
+        if (date.getDate() == 1){
+            for (User u : all_users){
+                for (Account a : u.account_list){
+                    a.interest_deposit();
+                    System.out.println(getDate());
+                    System.out.println("Interst Deposited");
+                }
+            }
+        }
     }
 
 }

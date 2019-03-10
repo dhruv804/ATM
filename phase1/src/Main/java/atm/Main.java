@@ -4,6 +4,8 @@ import javax.crypto.Mac;
 import javax.sound.sampled.Line;
 import javax.swing.*;
 import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by vedantshah on 2019-03-04.
@@ -13,11 +15,28 @@ public class Main {
     public static void main(String[] args) {
         String filename = "phase1/final.ser";
         File tmp = new File(filename);
-        System.out.println(tmp.exists());
+
+        String myDate = "2019/01/01";
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = new Date();
+        try {
+            date = sdf.parse(myDate);
+        } catch (java.text.ParseException p){
+            System.out.println(p);
+        }
 
         if (! tmp.isFile()) {
+            User u = new User("Ved", "vshah", "cool");
+            Savings s = new Savings();
+            s.deposit(100);
+            Chequing c = new Chequing();
+            c.deposit(100);
+            u.add_account(s);
+            u.add_account(c);
             BankManager bankManager = new BankManager();
-            Machine machine = new Machine(bankManager);
+            bankManager.add_account(u);
+            Machine machine = new Machine(bankManager, date);
 
             //Saving of object in a file
             LoginFrame loginFrame = new LoginFrame(bankManager, machine);
@@ -34,7 +53,7 @@ public class Main {
 
                 LoginFrame loginFrame = new LoginFrame(machine.getManager(), machine);
                 loginFrame.run();
-            } catch (Exception i) {
+            } catch (IOException | ClassNotFoundException i) {
                 System.out.println(i);
             }
 

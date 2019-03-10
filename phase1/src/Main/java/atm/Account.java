@@ -46,9 +46,5 @@ public abstract class Account implements Serializable {
         }
     }
 
-    public String get_account_details(){
-        String l1 = "Account Type: Chequing\n";
-        String l2 = "Balance: " + "0" + "\n";
-        return l1+l2; //TODO: Implement this as abstact, override in all accounts
-    }
+    public abstract String get_account_details();
 }

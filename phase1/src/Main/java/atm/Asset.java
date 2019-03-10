@@ -58,7 +58,6 @@ public abstract class Asset extends Account implements Serializable {
         } else {
             return false;
         }
-        //TODO: Should be in User Class
     }
 
     public abstract boolean transfer_out(double amount);

@@ -38,14 +38,14 @@ public class SetCredentialsFrame {
 
     public void run(){
         frame.setContentPane(credentials_jpanel);
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //TODO: Change to DO_NOTHING
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
     }
 
     public void close(){
         frame.setVisible(false);
-        frame.dispose(); //TODO: Figure this out
+        frame.dispose();
     }
 
     public void create_user(){

@@ -65,7 +65,7 @@ public class UserFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 for (Account acc : user.account_list){
-                    if (((DefaultComboBoxModel)comboBox1.getModel()).getIndexOf(acc) == -1) { //TODO: Do similar for others
+                    if (((DefaultComboBoxModel)comboBox1.getModel()).getIndexOf(acc) == -1) {
                         comboBox1.addItem(acc);
                         comboBox2.addItem(acc);
                         comboBox3.addItem(acc);
@@ -141,32 +141,40 @@ public class UserFrame {
             public void actionPerformed(ActionEvent e) {
                 Account from_acc = (Account)comboBox3.getSelectedItem();
                 Account to_acc = (Account)comboBox4.getSelectedItem();
-                double amt = Double.valueOf(amount.getText()); //TODO: Check if double
-                if (user.transfer(from_acc, to_acc, amt)){
-                    JOptionPane.showMessageDialog(null, "Transfer Successful.");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Transfer Failed.");
-                }
-            }
-        });
-        transferButton1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {//TODO: Finish this
-                Account from_acc = (Account)comboBox5.getSelectedItem();
-                double amt = Double.valueOf(amount2.getText());
-                String user_name = username.getText();
-                machine.update_users();
-                User u = machine.username_exists(user_name);
-
-                if (u != null){
-                    if (u.transfer(from_acc,u,amt)) {
+                try {
+                    double amt = Double.valueOf(amount.getText());
+                    if (user.transfer(from_acc, to_acc, amt)){
                         JOptionPane.showMessageDialog(null, "Transfer Successful.");
                     } else {
                         JOptionPane.showMessageDialog(null, "Transfer Failed.");
                     }
+                } catch (Exception f){
+                    JOptionPane.showMessageDialog(null, "Please Enter a valid amount");
                 }
-                else{
-                    JOptionPane.showMessageDialog(null, "Transfer Failed.");
+
+            }
+        });
+        transferButton1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Account from_acc = (Account)comboBox5.getSelectedItem();
+                try {
+                    double amt = Double.valueOf(amount2.getText());
+                    String user_name = username.getText();
+                    machine.update_users();
+                    User u = machine.username_exists(user_name);
+
+                    if (u != null) {
+                        if (u.transfer(from_acc, u, amt)) {
+                            JOptionPane.showMessageDialog(null, "Transfer Successful.");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Transfer Failed. Check account details.");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Transfer Failed. User does not exist");
+                    }
+                } catch (Exception f){
+                    JOptionPane.showMessageDialog(null, "Please Enter a valid amount");
                 }
             }
         });
