@@ -27,13 +27,7 @@ public class Main {
         }
 
         if (! tmp.isFile()) {
-            User u = new User("Ved", "vshah", "cool");
-            Savings s = new Savings();
-            s.deposit(100);
-            Chequing c = new Chequing();
-            c.deposit(100);
-            u.add_account(s);
-            u.add_account(c);
+            User u = new User("Vedant Shah", "vshah", "csc207");
             BankManager bankManager = new BankManager();
             bankManager.add_account(u);
             Machine machine = new Machine(bankManager, date);
