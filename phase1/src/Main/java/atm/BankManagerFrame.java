@@ -1,6 +1,5 @@
 package atm;
 
-import com.sun.org.apache.regexp.internal.RE;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -34,8 +33,8 @@ public class BankManagerFrame {
     private JButton rejectButton;
     private JTextArea status_machine;
     private JTextArea statusTextArea;
-    private static Machine machine;
-    private static BankManager bank_manager;
+    private Machine machine;
+    private BankManager bank_manager;
 
 
     public BankManagerFrame(BankManager bank_manager, Machine machine) {
@@ -62,35 +61,35 @@ public class BankManagerFrame {
                     int add_5 = Integer.valueOf(textField1.getText());
                     machine.restock_bill(5, add_5);
                 } catch (NumberFormatException n){
-
+                    System.out.println(n);
                 }
 
                 try {
                     int add_10 = Integer.valueOf(textField2.getText());
                     machine.restock_bill(10, add_10);
                 } catch (NumberFormatException n){
-
+                    System.out.println(n);
                 }
 
                 try {
                     int add_20 = Integer.valueOf(textField3.getText());
                     machine.restock_bill(20, add_20);
                 } catch (NumberFormatException n){
-
+                    System.out.println(n);
                 }
 
                 try {
                     int add_50 = Integer.valueOf(textField4.getText());
                     machine.restock_bill(50, add_50);
                 } catch (NumberFormatException n){
-
+                    System.out.println(n);
                 }
 
                 try {
                     int add_100 = Integer.valueOf(textField5.getText());
                     machine.restock_bill(100, add_100);
                 } catch (NumberFormatException n){
-
+                    System.out.println(n);
                 }
 
                 update_bill_amounts();

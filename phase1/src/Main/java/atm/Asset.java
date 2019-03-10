@@ -1,7 +1,6 @@
 package atm;
 
 import java.io.Serializable;
-import java.security.cert.TrustAnchor;
 
 public abstract class Asset extends Account implements Serializable {
 
