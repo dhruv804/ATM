@@ -1,0 +1,7 @@
+Todo List:
+
+1. Write JavaDocs for all the methods in the classes except the GUI classes
+2. Go through all the warnings and change minor things that will not affect the code.
+3. Make the typos write and ignore those which cannot be made right.
+4. Run inspections and get everything right.
+5. Understand the code.
