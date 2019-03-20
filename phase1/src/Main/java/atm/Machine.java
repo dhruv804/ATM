@@ -15,7 +15,6 @@ public class Machine implements Serializable{
 
     public Map<Integer, Integer> number_of_bills = new HashMap<Integer, Integer>();
     public int total_cash = 0;
-    private String path = "group_0315/phase1/alerts.txt";
     private ArrayList<User> all_users = new ArrayList<>();
     private BankManager manager;
     private static int serialVersionUID = 75857858;
