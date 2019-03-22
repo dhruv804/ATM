@@ -1,6 +1,15 @@
 ATM Project: Phase 1
 Group 0315
-This file will describe the functionality of our program. Throughout the program, Refresh buttons make everything up-to-date.
+
+This file will describe the functionality of our program. Please run the code on IntelliJ and follow the following steps
+to fix the test files:
+
+Project Structure > Libraries > Import Project Library > Choose Maven > Download the following Maven Repository:
+
+"org.junit.jupiter:junit-jupiter-api:5.0.0-M4"
+
+
+Throughout the program, Refresh buttons make everything up-to-date.
 Before running for the first time, please delete the phase1/final.ser, and set the desired starting date in Main.java.
 After doing so, run Main.java
 
