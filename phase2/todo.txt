@@ -32,6 +32,11 @@ Loans:
 
 c) Assets:
 
+Savings:
+
+1. Add free withdrawal limit
+2. Withdrawal fees
+
 Fixed GIC:
 
 1. Minumum limits for account
@@ -46,3 +51,7 @@ Market Based Investments:
 3. Market simulation
 4. Divident payments
 
+d) More employees and managers
+
+1. Junior managers - lesser account permissions (answerable to main manager)
+2. Standard employees - only withdrawal and deposits (add extra transaction fees?)
