@@ -1,19 +1,36 @@
 Todo List:
 
+Phase 2
+
+1. Refactor Code
+2. Debts - Mortgages and Loans (Add Limits)
+3. Assets - Investments (GIC and Market Based)
+4. More employees and managers
+
+a) Refactoring:
+
 1. Write JavaDocs for all the methods in the classes except the GUI classes
 2. Go through all the warnings and change minor things that will not affect the code.
 3. Make the typos write and ignore those which cannot be made right.
 4. Run inspections and get everything right.
 5. Understand the code.
 
-Phase 2
 
-1. Refactor Code
-2. Debts - Mortgages and Loans (Add Limits)
-3. Assets - Investments (GIC and Market Based)
+b) Debts:
+
+Mortgages:
+
+1. Duration
+2. Interest rates
+3. Credit Check?
 
 
-Assets:
+Loans:
+
+1. Duration - Short/Long term
+2. Interest rates
+
+c) Assets:
 
 Fixed GIC:
 
