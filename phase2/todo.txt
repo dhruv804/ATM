@@ -14,7 +14,7 @@ a) Refactoring:
 3. Make the typos write and ignore those which cannot be made right.
 4. Run inspections and get everything right.
 5. Understand the code.
-
+6. Create new UML for phase 1 + 2
 
 b) Debts:
 
