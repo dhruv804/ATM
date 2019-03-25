@@ -12,3 +12,20 @@ Phase 2
 2. Debts - Mortgages and Loans (Add Limits)
 3. Assets - Investments (GIC and Market Based)
 
+
+Assets:
+
+Fixed GIC:
+
+1. Minumum limits for account
+2. Minimum withdraw limits
+3. Durations
+4. Changing Interest rates
+
+Market Based Investments:
+
+1. Minumum limits for account
+2. Withdrawal charges
+3. Market simulation
+4. Divident payments
+
