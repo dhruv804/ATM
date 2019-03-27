@@ -209,9 +209,15 @@ public class Machine implements Serializable{
                             a.withdraw(((Chequing) a).over_transaction_limit()*((Chequing) a).getTransaction_fee());
                             ((Chequing) a).reset_transaction_count();
                         }
-                        System.out.println(getDate());
-                        System.out.println("Transaction Fees Withdrawn");
                     }
+                    if(a instanceof Savings) {
+                        if(((Savings) a).over_transaction_limit() > 0) {
+                            a.withdraw(((Savings) a).over_transaction_limit()*((Savings) a).getTransaction_fee());
+                            ((Savings) a).reset_transaction_count();
+                        }
+                    }
+                    System.out.println(getDate());
+                    System.out.println("Transaction Fees Withdrawn");
                 }
             }
         }
