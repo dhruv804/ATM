@@ -4,12 +4,12 @@ import java.io.Serializable;
 
 public class Mortgage extends Debt implements Serializable {
 
-    double initial_amount;
+    double balance;
     double interest_rate;
 
     public Mortgage(double initial_amount, double interest_rate) {
         super();
-        this.initial_amount = -initial_amount;
+        this.balance = -initial_amount;
         this.interest_rate = interest_rate;
     }
 
@@ -17,6 +17,11 @@ public class Mortgage extends Debt implements Serializable {
     public boolean transfer_out(double amount) {
         return this.withdraw(amount);
     }
+
+    /**
+     * pays off the mortgage account on a monthly basis
+     * @param amount amount to pay per month
+     */
 
     @Override
     public void transfer_in(double amount) {
@@ -26,6 +31,10 @@ public class Mortgage extends Debt implements Serializable {
     @Override
     public String toString(){
         return "Mortgage: "+this.getAccount_num();
+    }
+
+    public void interest_deposit() {
+        balance = balance * (1 + interest_rate);
     }
 
     public String get_account_details(){
