@@ -1,5 +1,7 @@
 package atm;
 
+import sun.util.resources.cldr.ebu.CalendarData_ebu_KE;
+
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -191,6 +193,10 @@ public class Machine implements Serializable{
         return  dateFormat.format(date);
     }
 
+
+    /**
+     * deposits interest and withdraws fees from foing over the transaction limit at the beginning of every month
+     */
     public void depositInterest(){
         update_users();
         if (date.getDate() == 1){
@@ -198,7 +204,15 @@ public class Machine implements Serializable{
                 for (Account a : u.account_list){
                     a.interest_deposit();
                     System.out.println(getDate());
-                    System.out.println("Interst Deposited");
+                    System.out.println("Interest Deposited");
+                    if(a instanceof Chequing) {
+                        if(((Chequing) a).over_transaction_limit() > 0) {
+                            a.withdraw(((Chequing) a).over_transaction_limit()*((Chequing) a).getTransaction_fee());
+                            ((Chequing) a).reset_transaction_count();
+                        }
+                        System.out.println(getDate());
+                        System.out.println("Transaction Fees Withdrawn");
+                    }
                 }
             }
         }
