@@ -193,7 +193,6 @@ public class Machine implements Serializable{
         return  dateFormat.format(date);
     }
 
-
     /**
      * deposits interest and withdraws fees from foing over the transaction limit at the beginning of every month
      */

@@ -48,6 +48,7 @@ public class Chequing extends Asset implements Serializable {
         return l1+l2;
     }
 
+
     /**
      * if the number of transactions is under the limit, will return a negative number
      * if it is over, it will return the number of transactions over the limit
