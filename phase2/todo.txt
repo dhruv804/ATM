@@ -14,7 +14,7 @@ a) Refactoring:
 3. Make the typos write and ignore those which cannot be made right.
 4. Run inspections and get everything right.
 5. Understand the code.
-
+6. Create new UML for phase 1 + 2
 
 b) Debts:
 
@@ -39,17 +39,17 @@ Savings:
 
 Fixed GIC:
 
-1. Minumum limits for account
+1. Minimum limits for account
 2. Minimum withdraw limits
 3. Durations
 4. Changing Interest rates
 
 Market Based Investments:
 
-1. Minumum limits for account
+1. Minimum limits for account
 2. Withdrawal charges
 3. Market simulation
-4. Divident payments
+4. Dividend payments
 
 d) More employees and managers
 
