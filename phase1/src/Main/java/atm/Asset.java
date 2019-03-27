@@ -6,9 +6,21 @@ public abstract class Asset extends Account implements Serializable {
 
     protected double balance;
 
+    /**
+     * This inherited method is used for returns the balances of an asset account.
+     * @return balance of the asset account
+     */
+
     public double getBalance() {
         return balance;
     }
+
+    /**
+     *
+     * This inherited method is used to set the balance of an asset account.
+     *
+     * @param balance balance of the account
+     */
 
     public void setBalance(double balance) {
         this.balance = balance;
@@ -58,6 +70,11 @@ public abstract class Asset extends Account implements Serializable {
             return false;
         }
     }
+
+    /**
+     * Abstract method that is used to sets a boolean whether the amount is transferred out of the account
+     * @param amount the selected amount to be transferred out of the asset account
+     */
 
     public abstract boolean transfer_out(double amount);
 
