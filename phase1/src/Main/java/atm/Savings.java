@@ -33,6 +33,7 @@ public class Savings extends Asset implements Serializable {
         balance = (double) Math.round(balance * 100)/100;
     }
 
+
     @Override
     public String toString(){
         return "Savings" + this.getAccount_num();
