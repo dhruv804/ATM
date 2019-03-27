@@ -39,17 +39,17 @@ Savings:
 
 Fixed GIC:
 
-1. Minumum limits for account
+1. Minimum limits for account
 2. Minimum withdraw limits
 3. Durations
 4. Changing Interest rates
 
 Market Based Investments:
 
-1. Minumum limits for account
+1. Minimum limits for account
 2. Withdrawal charges
 3. Market simulation
-4. Divident payments
+4. Dividend payments
 
 d) More employees and managers
 
