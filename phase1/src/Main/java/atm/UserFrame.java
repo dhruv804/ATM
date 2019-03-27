@@ -125,11 +125,16 @@ public class UserFrame {
                 if (machine.withdraw(amount) ){
                     if (acc.withdraw(amount)) {
                         System.out.println("Successfully withdrawn");
+                        JOptionPane.showMessageDialog(null, "Successfully withdrawn");
                     } else {
                         System.out.println("Failed withdrawal, account");
+                        JOptionPane.showMessageDialog(null, "Failed withdrawal, Please check your" +
+                                "balance and limit");
                     }
                 } else {
                     System.out.println("Failed withdrawal, machine");
+                    JOptionPane.showMessageDialog(null, "Failed withdrawal, Machine needs" +
+                            "restocking. Sorry for any inconvenience, please try again later");
                 }
 
                 update_accounts();
