@@ -215,6 +215,8 @@ public class Machine implements Serializable{
                 }
             }
         }
+
+        StockPortfolio.update_price();
     }
 
 }

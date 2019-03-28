@@ -9,6 +9,7 @@ public class User implements Serializable {
     protected ArrayList<Account> account_list;
     protected String user_id;
     protected String user_pass;
+    protected int num_stocks;
 
 
     public User(String name, String user_id, String user_pass) {
@@ -19,6 +20,7 @@ public class User implements Serializable {
         this.requested_accounts = new ArrayList<>();
         this.user_id = user_id;
         this.user_pass = user_pass;
+        this.num_stocks = 0;
     }
 
     /**

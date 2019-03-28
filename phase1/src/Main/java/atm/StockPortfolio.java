@@ -8,6 +8,14 @@ public class StockPortfolio {
     static double price = 5;
     static double fee = 0.1;
 
+    public static double getPrice() {
+        return price;
+    }
+
+    public static double getFee() {
+        return fee;
+    }
+
     public static void update_price(){
         Random r = new Random();
         double move_d = r.nextInt(3) - 0.814;
