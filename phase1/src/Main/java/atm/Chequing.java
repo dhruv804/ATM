@@ -10,7 +10,8 @@ public class Chequing extends Asset implements Serializable {
     private double transaction_fee;
 
     /**
-     * This method sets default transaction count to 0, transaction limit to 50 and transaction fee to 0.5.
+     * This method initializes a new Chequing account and sets default transaction count to 0, transaction limit to 50
+     * and transaction fee to 0.5.
      */
 
     public Chequing() {
@@ -31,10 +32,10 @@ public class Chequing extends Asset implements Serializable {
     }
 
     /**
-     * This method updates the trasaction count by increasing it by 1.
+     * This method updates the transaction count by increasing it by 1.
      *
      * @param amount withdrawal amount
-     * @return checks success of a withdrawl of an amount
+     * @return checks success of a withdrawal of an amount
      *
      * The method also checks whether a withdrawal of amount is successful or not.
      */
@@ -46,8 +47,8 @@ public class Chequing extends Asset implements Serializable {
 
     /**
      *
-     * This method overrides and it is used for withdrawing the 'amount' from a chequing account. The method enforces a
-     * one-time overdraft limit of -100 for a withdrawal for an initial positive account balance.
+     * This boolean method overrides and it is used for withdrawing the 'amount' from a chequing account.
+     * The method enforces a one-time overdraft limit of -100 for a withdrawal for an initial positive account balance.
      *
      * @param amount The amount to be withdrawn from an account
      * @return true for successful withdraw and false for an unsuccessful one.
@@ -108,7 +109,7 @@ public class Chequing extends Asset implements Serializable {
     }
 
     /**
-     * This method is used to reset the transaction fee for the chequing account.
+     * This method is used to return the transaction fee incurred for the chequing account.
      */
 
     public double getTransaction_fee() {
