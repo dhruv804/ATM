@@ -16,6 +16,7 @@ public class SetCredentialsFrame {
     private JPanel credentials_jpanel;
     private String name;
     private BankManager bank_manager;
+    private JRManager jrManager;
     private JFrame frame;
 
 
@@ -23,8 +24,6 @@ public class SetCredentialsFrame {
         frame = new JFrame(name);
         this.name = name;
         this.bank_manager = bank_manager;
-
-
         createButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -32,8 +31,18 @@ public class SetCredentialsFrame {
                 close();
             }
         });
-
-
+    }
+    public SetCredentialsFrame(String name, JRManager jrManager) {
+        frame = new JFrame(name);
+        this.name = name;
+        this.jrManager = jrManager;
+        createButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                create_user();
+                close();
+            }
+        });
     }
 
     public void run(){
@@ -49,10 +58,20 @@ public class SetCredentialsFrame {
     }
 
     public void create_user(){
-        if (bank_manager.create_logins(name, username_field.getText(), password_field.getText())){
-            JOptionPane.showMessageDialog(null, "Account Creation Successful");
-        } else {
-            JOptionPane.showMessageDialog(null, "Username already taken");
+        if (bank_manager != null){
+            if (bank_manager.create_logins(name, username_field.getText(), password_field.getText())){
+                JOptionPane.showMessageDialog(null, "Account Creation Successful");
+            } else {
+                JOptionPane.showMessageDialog(null, "Username already taken");
+            }
         }
+        else if (jrManager != null){
+            if (jrManager.create_logins(name, username_field.getText(), password_field.getText())){
+                JOptionPane.showMessageDialog(null, "Account Creation Successful");
+            } else {
+                JOptionPane.showMessageDialog(null, "Username already taken");
+            }
+        }
+
     }
 }
