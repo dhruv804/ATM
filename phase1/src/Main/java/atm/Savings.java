@@ -5,6 +5,9 @@ import java.io.Serializable;
 public class Savings extends Asset implements Serializable {
 
     static private double interest_rate = 0.001;
+    private int transaction_count;
+    private int transaction_limit;
+    private double transaction_fee;
 
     public Savings() {
         super();
@@ -30,6 +33,7 @@ public class Savings extends Asset implements Serializable {
         balance = (double) Math.round(balance * 100)/100;
     }
 
+
     @Override
     public String toString(){
         return "Savings" + this.getAccount_num();
@@ -39,5 +43,22 @@ public class Savings extends Asset implements Serializable {
         String l1 = "Account Type: Savings\n";
         String l2 = "Balance: " + this.getBalance() + "\n";
         return l1+l2;
+    }
+
+    /**
+     * if the number of transactions is under the limit, will return a negative number
+     * if it is over, it will return the number of transactions over the limit
+     * @return the number of transactions over the monthly limit
+     */
+    public int over_transaction_limit() {
+        return transaction_count-transaction_limit;
+    }
+
+    public void reset_transaction_count() {
+        transaction_count = 0;
+    }
+
+    public double getTransaction_fee() {
+        return transaction_fee;
     }
 }
