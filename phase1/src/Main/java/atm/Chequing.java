@@ -9,6 +9,10 @@ public class Chequing extends Asset implements Serializable {
     private int transaction_limit;
     private double transaction_fee;
 
+    /**
+     * This method sets default transaction count to 0, transaction limit to 50 and transaction fee to 0.5.
+     */
+
     public Chequing() {
         super();
         this.default_chequing = true;
@@ -17,14 +21,39 @@ public class Chequing extends Asset implements Serializable {
         transaction_fee = 0.5;
     }
 
+    /**
+     * This method checks and sets the defaults values to a chequing account.
+     * @param default_chequing boolean that checks for default values for a chequing account.
+     */
+
     public void setDefault_chequing(boolean default_chequing) {
         this.default_chequing = default_chequing;
     }
+
+    /**
+     * This method updates the trasaction count by increasing it by 1.
+     *
+     * @param amount withdrawal amount
+     * @return checks success of a withdrawl of an amount
+     *
+     * The method also checks whether a withdrawal of amount is successful or not.
+     */
 
     public boolean transfer_out(double amount){
         transaction_count++;
         return withdraw(amount);
     }
+
+    /**
+     *
+     * This method overrides and it is used for withdrawing the 'amount' from a chequing account. The method enforces a
+     * one-time overdraft limit of -100 for a withdrawal for an initial positive account balance.
+     *
+     * @param amount The amount to be withdrawn from an account
+     * @return true for successful withdraw and false for an unsuccessful one.
+     *
+     * The method also returns the success/failure of a withdrawal from a chequing account.
+     */
 
     @Override
     public boolean withdraw(double amount) {
@@ -37,10 +66,22 @@ public class Chequing extends Asset implements Serializable {
         }
     }
 
-    @Override
+    /**
+     * @return used to get account number in chequing account number format
+     *
+     * This method returns account number appended to the string "Chequing"
+     */
+
+     @Override
     public String toString(){
         return "Chequing"+this.getAccount_num();
     }
+
+    /**
+     * @return account type is concatenated to account balance
+     *
+     * This method returns account type along with the chequing account balance
+     */
 
     public String get_account_details(){
         String l1 = "Account Type: Chequing\n";
@@ -58,9 +99,17 @@ public class Chequing extends Asset implements Serializable {
         return transaction_count-transaction_limit;
     }
 
+    /**
+     * This method is used to reset the transaction counter to 0.
+     */
+
     public void reset_transaction_count() {
         transaction_count = 0;
     }
+
+    /**
+     * This method is used to reset the transaction fee for the chequing account.
+     */
 
     public double getTransaction_fee() {
         return transaction_fee;

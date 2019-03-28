@@ -1,11 +1,10 @@
 package atm;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 /**
  * Created by vedantshah on 2019-03-06.
@@ -52,6 +51,16 @@ public class UserFrame {
     private JTextPane pleaseSelectAnAccountTextPane;
     private JComboBox comboBox8;
     private JButton applyButton;
+    private JSlider slider2;
+    private JButton buyButton;
+    private JLabel priceLabel;
+    private JLabel feesLabel;
+    private JLabel totalLabel;
+    private JButton sellButton;
+    private JSlider slider3;
+    private JTextArea numberOfStocksTextArea;
+    private JTextArea priceOfStockTextArea;
+    private JButton refreshButton1;
     private User user;
     private Machine machine;
 
@@ -60,6 +69,20 @@ public class UserFrame {
         this.user = user;
         this.machine = machine;
         update_accounts();
+
+        slider2.setMinimum(1);
+        slider2.setMaximum(10);
+        slider2.setMajorTickSpacing(1);
+        slider2.setValue(0);
+        slider2.setPaintLabels(true);
+        slider2.setPaintTicks(true);
+        slider2.setPaintTrack(true);
+        slider2.setSnapToTicks(true);
+
+
+        update_sell_slider();
+
+
 
         refreshButton.addActionListener(new ActionListener() {
             @Override
@@ -234,6 +257,50 @@ public class UserFrame {
             }
         });
 
+
+        slider2.addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                //System.out.println("hi");
+                int num_stocks = slider2.getValue();
+                priceLabel.setText("Price per Share: " + String.valueOf(StockPortfolio.getPrice()));
+                feesLabel.setText("Fee per Share: " + String.valueOf(StockPortfolio.getFee()));
+                double total_price = num_stocks*(StockPortfolio.getFee() + StockPortfolio.getPrice());
+                totalLabel.setText("Total: " + String.valueOf(total_price));
+            }
+        });
+        buyButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Chequing c = (Chequing) user.get_primary_chequing();
+                int num_stocks = slider2.getValue();
+                double total_price = num_stocks*(StockPortfolio.getFee() + StockPortfolio.getPrice());
+                if (c.withdraw(total_price)){
+                    user.num_stocks += num_stocks;
+                    slider2.setValue(1);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Could not process. Please check balance" +
+                            " in primary Chequing account.");
+                }
+            }
+        });
+        sellButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int sell_amt = slider3.getValue();
+
+                user.deposit(sell_amt*StockPortfolio.getPrice());
+                user.num_stocks -= sell_amt;
+
+                update_sell_slider();
+            }
+        });
+        refreshButton1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                update_sell_slider();
+            }
+        });
     }
 
     public void run(){
@@ -332,5 +399,31 @@ public class UserFrame {
         slider1.setSnapToTicks(true);
 
         balanceTextArea.setText(acc.get_account_details());
+    }
+
+    private void update_sell_slider(){
+
+        if (user.num_stocks > 0) {
+            slider3.setMinimum(1);
+            slider3.setMaximum(Math.min(10, user.num_stocks));
+            slider3.setMajorTickSpacing(1);
+            slider3.setValue(0);
+            slider3.setPaintLabels(true);
+            slider3.setPaintTicks(true);
+            slider3.setPaintTrack(true);
+            slider3.setSnapToTicks(true);
+        } else {
+            slider3.setMinimum(0);
+            slider3.setMaximum(0);
+            slider3.setMajorTickSpacing(1);
+            slider3.setValue(0);
+            slider3.setPaintLabels(true);
+            slider3.setPaintTicks(true);
+            slider3.setPaintTrack(true);
+            slider3.setSnapToTicks(true);
+        }
+
+        numberOfStocksTextArea.setText("Number of Stocks: " + String.valueOf(user.num_stocks));
+        priceOfStockTextArea.setText("Price of Stock: " + String.valueOf(StockPortfolio.price));
     }
 }
