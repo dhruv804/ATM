@@ -7,11 +7,28 @@ public class Mortgage extends Debt implements Serializable {
     double balance;
     double interest_rate;
 
+    /**
+     * The Mortgage abstract class inherits the Debt super class features. Additionally, it sets the initial balance to
+     * negative initial_amount and passes in the interest_rate.
+     *
+     * @param initial_amount the absolute balance of mortgage
+     * @param interest_rate the interest rate on mortgage account
+     *
+     */
+
     public Mortgage(double initial_amount, double interest_rate) {
         super();
         this.balance = -initial_amount;
         this.interest_rate = interest_rate;
     }
+
+    /**
+     *
+     * This method overrides and returns the success of a Mortgage amount withdrawal attempt
+     *
+     * @param amount the amount to be transferred out from a Mortgage account
+     * @return true for successful transfer and false for unsuccessful
+     */
 
     @Override
     public boolean transfer_out(double amount) {
@@ -28,14 +45,30 @@ public class Mortgage extends Debt implements Serializable {
         this.deposit(amount);
     }
 
+    /**
+     * @return used to get account number in Mortgage account number format
+     *
+     * This method overrides returns account number appended to the string "Mortgage"
+     */
+
     @Override
     public String toString(){
         return "Mortgage: "+this.getAccount_num();
     }
 
+    /**
+     * This method updates the balance of the mortgage amount based on the interest rate.
+     */
+
     public void interest_deposit() {
         balance = balance * (1 + interest_rate);
     }
+
+    /**
+     * @return Mortgage account type is concatenated to the Mortgage account balance
+     *
+     * This method returns account type along with the Mortgage account balance
+     */
 
     public String get_account_details(){
         String l1 = "Account Type: Mortgage\n";
