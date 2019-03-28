@@ -67,8 +67,8 @@ public class Machine implements Serializable{
     }
 
 
-    // Changed return type from boolean to void for bankmanager restock method
-    public void restock_bill(int denom, int amount){ // Changed return type from boolean to void for bankmanager restock method
+    // Changed return type from boolean to void for bank manager restock method
+    public void restock_bill(int denom, int amount){
         int prev = get_number_of(denom);
         if (prev >= 0){
             number_of_bills.put(denom, amount + prev);
