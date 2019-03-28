@@ -113,6 +113,15 @@ public class BankManager implements Serializable {
         else{return false;}
     }
 
+    public JRManager get_jrmanager(){
+        for (User u : all_users){
+            if (u instanceof JRManager){
+                return (JRManager) u;
+            }
+        }
+        return null;
+    }
+
     /**
      *
      * Method is used in the GUI to check for a login in an ATM session

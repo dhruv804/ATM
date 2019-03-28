@@ -30,6 +30,8 @@ public class Main {
             User u = new User("Vedant Shah", "vshah", "csc207");
             BankManager bankManager = new BankManager();
             bankManager.add_account(u);
+            JRManager jrManager = new JRManager("John", "john", "cool");
+            bankManager.add_account(jrManager);
             Machine machine = new Machine(bankManager, date);
 
             //Saving of object in a file

@@ -13,27 +13,26 @@ import java.util.Date;
  * Created by vedantshah on 2019-03-06.
  */
 public class LoginFrame{
-    private JTextArea usernameTextArea;
     private JTextField username_field;
-    private JTextArea passwordTextArea;
     private JPasswordField password_field;
     private JButton submitButton;
     private JPanel login_jframe;
     private JTabbedPane tabbedPane1;
     private JButton apply;
     private JTextField name_field;
-    private JTextPane enter_name;
     private JButton ENDDAYButton;
     private JTextField exit_user;
     private JTextField exit_pass;
     private BankManager bank_manager;
     private Machine machine;
+    private JRManager jrManager;
     private JFrame frame;
 
 
     public LoginFrame(BankManager bank_manager, Machine machine) {
         this.bank_manager = bank_manager;
         this.machine = machine;
+        this.jrManager = bank_manager.get_jrmanager();
         username_field.setText("");
         password_field.setText("");
         machine.depositInterest();
@@ -44,13 +43,24 @@ public class LoginFrame{
                 if (username_field.getText().equals("admin") && password_field.getText().equals("pass")) {
                     BankManagerFrame bank_manager_frame = new BankManagerFrame(bank_manager,machine);
                     bank_manager_frame.run();
-                } else{
+                }
+                else if(username_field.getText().equals("jrm") && password_field.getText().equals("cool")){
+                    JRManagerFrame jrManagerFrame = new JRManagerFrame(jrManager, machine);
+                    jrManagerFrame.run();
+                }
+                else{
                     User u = bank_manager.get_user_from_login(username_field.getText(), password_field.getText());
+                    User u2 = jrManager.get_user_from_login(username_field.getText(), password_field.getText());
 
                     if (u != null) {
                         UserFrame user_frame = new UserFrame(u, machine);
                         user_frame.run();
-                    } else {
+                    }
+                    else if (u2 != null){
+                        UserFrame user_frame = new UserFrame(u2, machine);
+                        user_frame.run();
+                    }
+                    else {
                         JOptionPane.showMessageDialog(null, "Username and Password not found");
                     }
 
@@ -62,6 +72,7 @@ public class LoginFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 bank_manager.create_user_request(name_field.getText());
+                jrManager.create_user_request(name_field.getText());
                 JOptionPane.showMessageDialog(null, "Application Sent");
                 name_field.setText("");
             }
