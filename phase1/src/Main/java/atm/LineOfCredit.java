@@ -4,6 +4,10 @@ import java.io.Serializable;
 
 public class LineOfCredit extends Debt implements Serializable {
 
+    /**
+     * The LineOfCredit abstract class inherits the Debt super class features and initializes them by default.
+     */
+
     public LineOfCredit() {
         super();
     }
