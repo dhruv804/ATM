@@ -61,6 +61,9 @@ public class UserFrame {
     private JTextArea numberOfStocksTextArea;
     private JTextArea priceOfStockTextArea;
     private JButton refreshButton1;
+    private JButton refreshButton2;
+    private JComboBox comboBox9;
+    private JTextPane transactionInfoPane;
     private User user;
     private Machine machine;
 
@@ -301,6 +304,23 @@ public class UserFrame {
                 update_sell_slider();
             }
         });
+        refreshButton2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                update_accounts();
+            }
+        });
+        comboBox9.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Transaction t = (Transaction) comboBox9.getSelectedItem();
+                if (t == null){
+                    return;
+                }
+
+                transactionInfoPane.setText(t.getInfo());
+            }
+        });
     }
 
     public void run(){
@@ -363,6 +383,13 @@ public class UserFrame {
         for (Account acc : user.account_list){
             if (((DefaultComboBoxModel)comboBox7.getModel()).getIndexOf(acc) == -1) {
                 comboBox7.addItem(acc);
+            }
+        }
+
+
+        for (Transaction t : user.transactions){
+            if (((DefaultComboBoxModel)comboBox9.getModel()).getIndexOf(t) == -1) {
+                comboBox9.addItem(t);
             }
         }
     }

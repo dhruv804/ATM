@@ -10,9 +10,11 @@ public class User implements Serializable {
     protected String user_id;
     protected String user_pass;
     protected int num_stocks;
+    protected  ArrayList<Transaction> transactions;
 
 
     public User(String name, String user_id, String user_pass) {
+        this.transactions = new ArrayList<>();
         this.name = name;
         this.account_list = new ArrayList<>();
         account_list.add(new Chequing());
@@ -35,10 +37,14 @@ public class User implements Serializable {
     }
 
     public boolean transfer(Account from, Account to, double amount) {
+        Transaction t = new Transaction(from, to, amount);
+        transactions.add(t);
         return from.transfer(to, amount);
     }
 
     public boolean transfer(Account from, User to, double amount) {
+        Transaction t = new Transaction(from, to.get_primary_chequing(), amount);
+        transactions.add(t);
         if (from.withdraw(amount)){
             to.deposit(amount);
             return true;
@@ -47,8 +53,11 @@ public class User implements Serializable {
     }
 
     public void deposit(Account acc, double amount){
+        Transaction t = new Transaction(null, acc, amount);
+        transactions.add(t);
         acc.deposit(amount);
     }
+
     public Account get_primary_chequing(){
         for (Account a : account_list){
             if (a instanceof Chequing){
@@ -59,10 +68,17 @@ public class User implements Serializable {
     }
     public void deposit(double amount){
         Account primary = get_primary_chequing();
+
+        Transaction t = new Transaction(null, primary, amount);
+        transactions.add(t);
+
         primary.deposit(amount);
     }
 
     public boolean transfer(Account from, double amount) {
+        Transaction t = new Transaction(from, null, amount);
+        transactions.add(t);
+
         return from.withdraw(amount);
     }
 
