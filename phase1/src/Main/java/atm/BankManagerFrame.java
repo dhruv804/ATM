@@ -32,6 +32,10 @@ public class BankManagerFrame {
     private JButton createButton;
     private JButton rejectButton;
     private JTextArea status_machine;
+    private JButton refreshButton2;
+    private JComboBox transactionComboBox;
+    private JTextArea transactionInfoArea;
+    private JButton revertTransactionButton;
     private JTextArea statusTextArea;
     private Machine machine;
     private BankManager bank_manager;
@@ -166,6 +170,47 @@ public class BankManagerFrame {
                 bank_manager.pending_acc_requests.remove(r);
                 update_requests();
                 accountDetailsTextArea.setText("");
+            }
+        });
+        refreshButton2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for (User user : bank_manager.all_users){
+                    for (Transaction t : user.transactions){
+                        if (((DefaultComboBoxModel)transactionComboBox.getModel()).getIndexOf(t) == -1) {
+                            transactionComboBox.addItem(t);
+                        }
+                    }
+                }
+            }
+        });
+        transactionComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Transaction t = (Transaction) transactionComboBox.getSelectedItem();
+                if (t == null){
+                    return;
+                }
+
+                transactionInfoArea.setText(t.getInfo());
+            }
+        });
+        revertTransactionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Transaction t = (Transaction) transactionComboBox.getSelectedItem();
+                if (t == null){
+                    return;
+                }
+
+                t.undo();
+                transactionComboBox.removeItem(t);
+                transactionInfoArea.setText("");
+                for (User user : bank_manager.all_users){
+                    if (user.transactions.contains(t)) {
+                        user.transactions.remove(t);
+                    }
+                }
             }
         });
     }

@@ -386,7 +386,7 @@ public class UserFrame {
             }
         }
 
-
+        comboBox9.removeAllItems();
         for (Transaction t : user.transactions){
             if (((DefaultComboBoxModel)comboBox9.getModel()).getIndexOf(t) == -1) {
                 comboBox9.addItem(t);
