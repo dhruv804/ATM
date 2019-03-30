@@ -48,7 +48,6 @@ public class UserFrame {
     private JTextField amount4;
     private JButton depositButton;
     private JTextArea depositdetails;
-    private JTextPane pleaseSelectAnAccountTextPane;
     private JComboBox comboBox8;
     private JButton applyButton;
     private JSlider slider2;
@@ -64,6 +63,9 @@ public class UserFrame {
     private JButton refreshButton2;
     private JComboBox comboBox9;
     private JTextPane transactionInfoPane;
+    private JTextField textField1;
+    private JComboBox comboBox10;
+    private JButton requestButton;
     private User user;
     private Machine machine;
 
@@ -319,6 +321,42 @@ public class UserFrame {
                 }
 
                 transactionInfoPane.setText(t.getInfo());
+            }
+        });
+        requestButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String join_user = textField1.getText();
+                machine.update_users();
+                User u = machine.username_exists(join_user);
+                String r = (String) comboBox10.getSelectedItem();
+                System.out.println(r);
+
+                if (u != null){
+                    switch (r){
+                        case "Savings":
+                            user.request_join_account(u, new Savings());
+                            JOptionPane.showMessageDialog(null, "Join Saving account requested.");
+                            break;
+                        case "Chequing":
+                            user.request_join_account(u, new Chequing());
+                            JOptionPane.showMessageDialog(null, "Join Chequing account requested.");
+                            break;
+                        case "Credit Card":
+                            user.request_join_account(u, new CreditCard());
+                            JOptionPane.showMessageDialog(null, "Join Credit Card account requested.");
+                            break;
+                        case "Line of Credit":
+                            user.request_join_account(u, new LineOfCredit());
+                            JOptionPane.showMessageDialog(null, "Join Line of Credit account requested.");
+                            break;
+                    }
+
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "The 2nd Nominee does not exist.");
+                }
+
             }
         });
     }

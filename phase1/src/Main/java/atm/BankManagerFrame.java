@@ -139,6 +139,28 @@ public class BankManagerFrame {
                 if (account_select.getItemCount() == 0) return;
 
                 Request r = (Request) account_select.getSelectedItem();
+                if (r.join_user != null){
+                    User u = r.user_requesting;
+                    User ju = r.join_user;
+                    u.requested_accounts.remove(r);
+                    bank_manager.pending_acc_requests.remove(r);
+                    u.add_account(r.account_requested);
+                    ju.add_account(r.account_requested);
+                    if (r.account_requested instanceof Debt){
+                        String[] possibilities = {"250", "500", "1000", "2000", "5000"};
+                        Object icon = null;
+                        String limit = (String)JOptionPane.showInputDialog(tabbedPane1, "Please set a limit on the Acccount: ",
+                                "Limit" , JOptionPane.PLAIN_MESSAGE,  null, possibilities, possibilities[0]);
+                        Debt d = (Debt) r.account_requested;
+                        d.setLimit((Integer.valueOf(limit)));
+                    }
+                    if (r.account_requested instanceof Chequing){
+                        Chequing c = (Chequing) r.account_requested;
+                        c.setDefault_chequing(false);
+                    }
+                    update_requests();
+                    accountDetailsTextArea.setText("");
+                }
                 User u = r.user_requesting;
                 u.requested_accounts.remove(r);
                 bank_manager.pending_acc_requests.remove(r);

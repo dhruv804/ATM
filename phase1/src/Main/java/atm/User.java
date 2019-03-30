@@ -11,6 +11,7 @@ public class User implements Serializable {
     protected String user_pass;
     protected int num_stocks;
     protected  ArrayList<Transaction> transactions;
+    protected ArrayList<Account> join_accounts;
 
 
     public User(String name, String user_id, String user_pass) {
@@ -33,6 +34,11 @@ public class User implements Serializable {
      */
     public void request_account(Account account_type){
         Request req = new Request(this, account_type);
+        requested_accounts.add(req);
+    }
+
+    public void request_join_account(User u , Account account){
+        Request req = new Request(this, account, u);
         requested_accounts.add(req);
     }
 
