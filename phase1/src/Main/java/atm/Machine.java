@@ -22,6 +22,14 @@ public class Machine implements Serializable{
     private static int serialVersionUID = 75857858;
     private Date date;
 
+    /**
+     *
+     * This method is used to initialize the initial bank notes of denominations 5,10,20,50 and 100 to be 0 in the ATM.
+     *
+     * @param manager The main bank manager
+     * @param date The date of operation
+     */
+
     public Machine(BankManager manager, Date date) {
         number_of_bills.put(5, 0);
         number_of_bills.put(10, 0);
@@ -32,12 +40,27 @@ public class Machine implements Serializable{
         this.date = date;
     }
 
+    /**
+     *
+     * This method is used to return the total cash remaining in the ATM machine.
+     *
+     * @return the added up money from bills in the ATM
+     */
+
     public int get_total_cash(){
         for(int i: number_of_bills.keySet()){
             total_cash += number_of_bills.get(i) * i;
         }
         return total_cash;
     }
+
+    /**
+     *
+     * This method returns the number of bills of denom in the ATM or -1 for a NullPointer Exception
+     *
+     * @param denom the denomination of the bill to be accounted for
+     * @return either the number of bills of denom or the -1 for a NullPointer Exception
+     */
 
     public int get_number_of(int denom){
         try {
@@ -46,6 +69,14 @@ public class Machine implements Serializable{
             return -1;
         }
     }
+
+    /**
+     *
+     * This boolean method returns the need for restocking of bills by checking if any bill denomination is less than
+     * 20 bills in the ATM.
+     *
+     * @return true if any bill in the ATM is less than 20 or else returns falls fall enough bills in the machine
+     */
 
     public boolean needs_restocking(){
         if (get_number_of(5) < 20){
@@ -66,6 +97,14 @@ public class Machine implements Serializable{
         else{return false;}
     }
 
+
+    /**
+     *
+     * This method is used to restock a specific bill denom by a specific number amount.
+     *
+     * @param denom the denomination of the bill
+     * @param amount the number of bills to be restocked of denom
+     */
 
     // Changed return type from boolean to void for bank manager restock method
     public void restock_bill(int denom, int amount){
@@ -157,6 +196,10 @@ public class Machine implements Serializable{
         return restock_bills;
     }
 
+    /**
+     *This method is used to check whether any bill of any specific denomination requires restocking.
+     */
+
     public void restock_machine() {
         HashMap<Integer, Integer> cur_map = has_enough_cash();
 
@@ -167,11 +210,24 @@ public class Machine implements Serializable{
 
         }
     }
+
+    /**
+     * This method is used by manger to add a user into the ATM database.
+     */
+
     public void update_users(){
         for (User u : manager.all_users){
             all_users.add(u);
         }
     }
+
+    /**
+     *
+     * This method is used to determine whether the user with a username exists or not.
+     *
+     * @param username username of the user
+     * @return returns true if the user exists or null if it doesn't.
+     */
 
     public User username_exists(String username){
         for (User u : all_users){
@@ -180,13 +236,27 @@ public class Machine implements Serializable{
         return null;
     }
 
+    /**
+     * This method is used to return the current bank manager.
+     * @return bank manager information
+     */
+
     public BankManager getManager(){
         return manager;
     }
 
+    /**
+     * This method is used to process the next day on an ATM.
+     */
+
     public void nextDay(){
         this.date = new Date(this.date.getTime() + (1000*60*60*24));
     }
+
+    /**
+     * This method is used to return the current date of operation.
+     * @return the date of operation
+     */
 
     public String getDate(){
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
