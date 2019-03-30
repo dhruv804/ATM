@@ -8,13 +8,27 @@ public class StockPortfolio {
     static double price = 5;
     static double fee = 0.1;
 
+    /**
+     * This method returns the price of the stock
+     * @return price of stock
+     */
+
     public static double getPrice() {
         return price;
     }
 
+    /**
+     * This method returns the fees on the stock
+     * @return fees on the stock
+     */
+
     public static double getFee() {
         return fee;
     }
+
+    /**
+     * This method is used to update the stock prices.
+     */
 
     public static void update_price(){
         Random r = new Random();
