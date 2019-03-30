@@ -470,6 +470,7 @@
                     <item value="Chequing"/>
                     <item value="Credit Card"/>
                     <item value="Line of Credit"/>
+                    <item value="Student Chequing"/>
                   </model>
                 </properties>
               </component>
@@ -523,6 +524,7 @@
                     <item value="Chequing"/>
                     <item value="Credit Card"/>
                     <item value="Line of Credit"/>
+                    <item value="Student Chequing"/>
                   </model>
                 </properties>
               </component>

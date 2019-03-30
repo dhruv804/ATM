@@ -6,7 +6,7 @@ public class Chequing extends Asset implements Serializable {
 
     protected boolean default_chequing;
     private int transaction_count;
-    private int transaction_limit;
+    protected int transaction_limit;
     private double transaction_fee;
 
     /**
@@ -114,5 +114,9 @@ public class Chequing extends Asset implements Serializable {
 
     public double getTransaction_fee() {
         return transaction_fee;
+    }
+
+    public int getTransaction_count() {
+        return transaction_count;
     }
 }
