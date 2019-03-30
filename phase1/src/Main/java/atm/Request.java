@@ -23,6 +23,15 @@ public class Request implements Serializable {
         this.account_requested = account_requested;
     }
 
+    /**
+     *
+     * This method is used to initialize a joint user account request
+     *
+     * @param user_requesting Name of the users requesting a joint account
+     * @param account_requested Type of account requested
+     * @param join_user name of joint user
+     */
+
     public Request(User user_requesting, Account account_requested, User join_user) {
         this.user_requesting = user_requesting;
         this.account_requested = account_requested;
