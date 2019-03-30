@@ -108,6 +108,8 @@ public class BankManager implements Serializable {
             User u = new User(name, username, password);
             all_users.add(u);
             pending_user_requests.remove(name);
+            JRManager jrm = get_jrmanager();
+            jrm.pending_user_requests.remove(name);
             return  true;
         }
         else{return false;}

@@ -8,10 +8,8 @@ import java.awt.event.ActionListener;
  * Created by vedantshah on 2019-03-06.
  */
 public class SetCredentialsFrame {
-    private JTextArea usernameTextArea;
     private JTextField username_field;
     private JTextField password_field;
-    private JTextArea passwordTextArea;
     private JButton createButton;
     private JPanel credentials_jpanel;
     private String name;
@@ -39,8 +37,8 @@ public class SetCredentialsFrame {
         createButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                create_user();
-                close();
+                if (create_user()){close();}
+                else{;}
             }
         });
     }
@@ -57,21 +55,26 @@ public class SetCredentialsFrame {
         frame.dispose();
     }
 
-    public void create_user(){
+    public boolean create_user(){
         if (bank_manager != null){
             if (bank_manager.create_logins(name, username_field.getText(), password_field.getText())){
                 JOptionPane.showMessageDialog(null, "Account Creation Successful");
+                return true;
             } else {
                 JOptionPane.showMessageDialog(null, "Username already taken");
+                return false;
             }
         }
         else if (jrManager != null){
             if (jrManager.create_logins(name, username_field.getText(), password_field.getText())){
                 JOptionPane.showMessageDialog(null, "Account Creation Successful");
+                return true;
             } else {
                 JOptionPane.showMessageDialog(null, "Username already taken");
+                return false;
             }
         }
+        return false;
 
     }
 }

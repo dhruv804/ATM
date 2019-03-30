@@ -61,11 +61,12 @@ public class JRManagerFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (account_select.getItemCount() == 0) return;
-
+                BankManager manager = jrManager.getManager();
                 Request r = (Request) account_select.getSelectedItem();
                 User u = r.user_requesting;
                 u.requested_accounts.remove(r);
                 jrManager.pending_acc_requests.remove(r);
+                manager.pending_acc_requests.remove(r);
                 u.add_account(r.account_requested);
                 if (r.account_requested instanceof Chequing){
                     Chequing c = (Chequing) r.account_requested;

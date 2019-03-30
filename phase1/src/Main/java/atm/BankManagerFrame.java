@@ -139,11 +139,13 @@ public class BankManagerFrame {
                 if (account_select.getItemCount() == 0) return;
 
                 Request r = (Request) account_select.getSelectedItem();
+                JRManager jrManager = bank_manager.get_jrmanager();
                 if (r.join_user != null){
                     User u = r.user_requesting;
                     User ju = r.join_user;
                     u.requested_accounts.remove(r);
                     bank_manager.pending_acc_requests.remove(r);
+                    jrManager.pending_acc_requests.remove(r);
                     u.add_account(r.account_requested);
                     ju.add_account(r.account_requested);
                     if (r.account_requested instanceof Debt){
@@ -164,6 +166,7 @@ public class BankManagerFrame {
                 User u = r.user_requesting;
                 u.requested_accounts.remove(r);
                 bank_manager.pending_acc_requests.remove(r);
+                jrManager.pending_acc_requests.remove(r);
                 u.add_account(r.account_requested);
                 if (r.account_requested instanceof Debt){
                     String[] possibilities = {"250", "500", "1000", "2000", "5000"};

@@ -8,10 +8,16 @@ public class JRManager extends User implements Serializable{
     ArrayList<Request> pending_acc_requests = new ArrayList<>();
     ArrayList<User> all_users = new ArrayList<>();
     ArrayList<String> pending_user_requests = new ArrayList<>();
+    BankManager manager;
 
 
-    public JRManager(String name, String user_id, String user_pass) {
+    public JRManager(String name, String user_id, String user_pass, BankManager manager) {
         super(name, user_id, user_pass);
+        this.manager = manager;
+    }
+
+    public BankManager getManager() {
+        return manager;
     }
 
     protected void update_requests(){
@@ -39,7 +45,9 @@ public class JRManager extends User implements Serializable{
         if (check_avail(username)){
             User u = new User(name, username, password);
             all_users.add(u);
+            this.manager.all_users.add(u);
             pending_user_requests.remove(name);
+            this.manager.pending_user_requests.remove(name);
             return  true;
         }
         else{return false;}
