@@ -18,9 +18,6 @@ public class UserFrame {
     private JTextField old_pass_field;
     private JTextField new_pass_field;
     private JTextField confirm_pass_field;
-    private JTextArea oldPasswordTextArea;
-    private JTextArea newPasswordTextArea;
-    private JTextArea confirmNewPasswordTextArea;
     private JButton changePasswordButton;
     private JSlider slider1;
     private JTextArea withdraw_text;
@@ -66,6 +63,9 @@ public class UserFrame {
     private JTextField textField1;
     private JComboBox comboBox10;
     private JButton requestButton;
+    private JComboBox comboBox11;
+    private JButton makeDefaultButton;
+    private JButton refreshButton3;
     private User user;
     private Machine machine;
 
@@ -101,6 +101,9 @@ public class UserFrame {
                         comboBox5.addItem(acc);
                         comboBox6.addItem(acc);
                         comboBox7.addItem(acc);
+                    }
+                    if (((DefaultComboBoxModel)comboBox1.getModel()).getIndexOf(acc) == -1 && acc instanceof Chequing){
+                        comboBox11.addItem(acc);
                     }
                 }
             }
@@ -371,6 +374,29 @@ public class UserFrame {
 
             }
         });
+        makeDefaultButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Chequing acc = (Chequing) comboBox11.getSelectedItem();
+                acc.setDefault_chequing(true);
+                for (Account a : user.account_list){
+                    if (a instanceof Chequing && a != acc){
+                        ((Chequing) a).setDefault_chequing(false);
+                    }
+                }
+                JOptionPane.showMessageDialog(null, "The selected account has been made Default.");
+            }
+        });
+        refreshButton3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for (Account acc : user.account_list){
+                    if (((DefaultComboBoxModel)comboBox1.getModel()).getIndexOf(acc) == -1 && acc instanceof Chequing) {
+                        comboBox11.addItem(acc);
+                    }
+                }
+            }
+        });
     }
 
     public void run(){
@@ -433,6 +459,12 @@ public class UserFrame {
         for (Account acc : user.account_list){
             if (((DefaultComboBoxModel)comboBox7.getModel()).getIndexOf(acc) == -1) {
                 comboBox7.addItem(acc);
+            }
+        }
+
+        for (Account acc : user.account_list){
+            if (((DefaultComboBoxModel)comboBox11.getModel()).getIndexOf(acc) == -1 && acc instanceof Chequing) {
+                comboBox11.addItem(acc);
             }
         }
 

@@ -32,6 +32,7 @@ public class Main {
             bankManager.add_account(u);
             JRManager jrManager = new JRManager("John", "john", "cool", bankManager);
             bankManager.add_account(jrManager);
+            jrManager.all_users.add(u);
             Machine machine = new Machine(bankManager, date);
 
             //Saving of object in a file
