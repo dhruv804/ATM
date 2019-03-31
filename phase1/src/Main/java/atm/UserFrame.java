@@ -262,6 +262,10 @@ public class UserFrame {
                         user.request_account(new Student());
                         JOptionPane.showMessageDialog(null, "Student Chequing account requested.");
                         break;
+                    case "Mortgage":
+                        user.request_account(new Mortgage());
+                        JOptionPane.showMessageDialog(null, "Mortgage account requested.");
+                        break;
                 }
             }
         });
@@ -355,7 +359,7 @@ public class UserFrame {
                             JOptionPane.showMessageDialog(null, "Join Line of Credit account requested.");
                             break;
                         case "Student Chequing":
-                            user.request_join_account(u, new LineOfCredit());
+                            user.request_join_account(u, new Student());
                             JOptionPane.showMessageDialog(null, "Join Student Chequing account requested.");
                             break;
                     }

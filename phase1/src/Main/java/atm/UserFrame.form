@@ -471,6 +471,7 @@
                     <item value="Credit Card"/>
                     <item value="Line of Credit"/>
                     <item value="Student Chequing"/>
+                    <item value="Mortgage"/>
                   </model>
                 </properties>
               </component>

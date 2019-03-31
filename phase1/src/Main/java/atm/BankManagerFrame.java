@@ -148,7 +148,9 @@ public class BankManagerFrame {
                     jrManager.pending_acc_requests.remove(r);
                     u.add_account(r.account_requested);
                     ju.add_account(r.account_requested);
-                    if (r.account_requested instanceof Debt){
+                    if (r.account_requested instanceof Mortgage){
+                        Mortgage m = (Mortgage) r.account_requested;
+                    } else if (r.account_requested instanceof Debt){
                         String[] possibilities = {"250", "500", "1000", "2000", "5000"};
                         Object icon = null;
                         String limit = (String)JOptionPane.showInputDialog(tabbedPane1, "Please set a limit on the Acccount: ",
@@ -156,7 +158,10 @@ public class BankManagerFrame {
                         Debt d = (Debt) r.account_requested;
                         d.setLimit((Integer.valueOf(limit)));
                     }
-                    if (r.account_requested instanceof Chequing){
+                    if (r.account_requested instanceof Student){
+                        Student f = (Student) r.account_requested;
+                        f.setDefault_chequing(false);
+                    } else if (r.account_requested instanceof Chequing){
                         Chequing c = (Chequing) r.account_requested;
                         c.setDefault_chequing(false);
                     }
@@ -168,7 +173,9 @@ public class BankManagerFrame {
                 bank_manager.pending_acc_requests.remove(r);
                 jrManager.pending_acc_requests.remove(r);
                 u.add_account(r.account_requested);
-                if (r.account_requested instanceof Debt){
+                if (r.account_requested instanceof Mortgage){
+                    Mortgage m = (Mortgage) r.account_requested;
+                } else if (r.account_requested instanceof Debt){
                     String[] possibilities = {"250", "500", "1000", "2000", "5000"};
                     Object icon = null;
                     String limit = (String)JOptionPane.showInputDialog(tabbedPane1, "Please set a limit on the Acccount: ",
@@ -176,7 +183,10 @@ public class BankManagerFrame {
                     Debt d = (Debt) r.account_requested;
                     d.setLimit((Integer.valueOf(limit)));
                 }
-                if (r.account_requested instanceof Chequing){
+                if (r.account_requested instanceof Student){
+                    Student f = (Student) r.account_requested;
+                    f.setDefault_chequing(false);
+                } else if (r.account_requested instanceof Chequing){
                     Chequing c = (Chequing) r.account_requested;
                     c.setDefault_chequing(false);
                 }

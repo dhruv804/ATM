@@ -4,8 +4,7 @@ import java.io.Serializable;
 
 public class Mortgage extends Debt implements Serializable {
 
-    double balance;
-    double interest_rate;
+    protected double interest_rate;
 
     /**
      * The Mortgage abstract class inherits the Debt super class features. Additionally, it sets the initial balance to
@@ -16,10 +15,11 @@ public class Mortgage extends Debt implements Serializable {
      *
      */
 
-    public Mortgage(double initial_amount, double interest_rate) {
+    public Mortgage() {
         super();
-        this.balance = -initial_amount;
-        this.interest_rate = interest_rate;
+        this.balance = 500000;
+        this.interest_rate = 0.04;
+        this.limit = 1000000;
     }
 
     /**
@@ -53,7 +53,7 @@ public class Mortgage extends Debt implements Serializable {
 
     @Override
     public String toString(){
-        return "Mortgage: "+this.getAccount_num();
+        return "Mortgage"+this.getAccount_num();
     }
 
     /**
