@@ -11,14 +11,35 @@ public class JRManager extends User implements Serializable{
     BankManager manager;
 
 
+    /**
+     *
+     * This method is used to initialize a new JRManager and pass in his basic information and login credentials and
+     * which manager he is answerable to.
+     *
+     * @param name The JRManager's name
+     * @param user_id The JRManager's user id
+     * @param user_pass The JRManager's password
+     * @param manager The JRManager's BankManager
+     */
+
     public JRManager(String name, String user_id, String user_pass, BankManager manager) {
         super(name, user_id, user_pass);
         this.manager = manager;
     }
 
+    /**
+     * This method returns the BankManager of the JRManager
+     *
+     * @return The JRManager's BankManager
+     */
+
     public BankManager getManager() {
         return manager;
     }
+
+    /**
+     * This method is used to update newer requests to the existing ArrayList of pending_acc_requests
+     */
 
     protected void update_requests(){
         pending_acc_requests.clear();
@@ -28,9 +49,23 @@ public class JRManager extends User implements Serializable{
 
     }
 
+    /**
+     * This method is used to create a new user request and add it to existing ArrayList of pending_acc_requests with
+     * user's name.
+     *
+     * @param name Name of the requesting user.
+     */
+
     public void create_user_request(String name){
         pending_user_requests.add(name);
     }
+
+    /**
+     * Helper method for create_logins method
+     *
+     * @param username User username
+     * @return boolean true for a success & false for a failure whether user name already exists
+     */
 
     public boolean check_avail(String username){
         for (User u : all_users){
@@ -40,6 +75,15 @@ public class JRManager extends User implements Serializable{
         }
         return true;
     }
+
+    /**
+     * Method is used to create login credentials for a user
+     *
+     * @param name User name
+     * @param username User username
+     * @param password User password
+     * @return boolean true for a success & false for a failure for a creating of new login credentials
+     */
 
     public boolean create_logins(String name, String username, String password){
         if (check_avail(username)){
@@ -52,6 +96,14 @@ public class JRManager extends User implements Serializable{
         }
         else{return false;}
     }
+
+    /**
+     * Method is used in the GUI to check for a login in an ATM session
+     *
+     * @param username User username
+     * @param password User password
+     * @return user if user exists or else null if it does not exist
+     */
 
     public User get_user_from_login(String username, String password){
         for (User u : all_users){

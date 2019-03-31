@@ -66,10 +66,10 @@ public class BankManager implements Serializable {
     }
 
     /**
-     *
      * This method is used to create a new user request and add it to existing ArrayList of pending_acc_requests with
-     * user name
-     * @param name User Name
+     * user's name.
+     *
+     * @param name Name of the requesting user.
      */
 
     public void create_user_request(String name){
@@ -77,7 +77,6 @@ public class BankManager implements Serializable {
     }
 
     /**
-     *
      * Helper method for create_logins method
      *
      * @param username User username
@@ -94,7 +93,6 @@ public class BankManager implements Serializable {
     }
 
     /**
-     *
      * Method is used to create login credentials for a user
      *
      * @param name User name
@@ -115,6 +113,13 @@ public class BankManager implements Serializable {
         else{return false;}
     }
 
+
+    /**
+     * This method is used to get the JRManager assigned to the BankManager.
+     *
+     * @return The JRManagers details or null if none exists.
+     */
+
     public JRManager get_jrmanager(){
         for (User u : all_users){
             if (u instanceof JRManager){
@@ -125,7 +130,6 @@ public class BankManager implements Serializable {
     }
 
     /**
-     *
      * Method is used in the GUI to check for a login in an ATM session
      *
      * @param username User username
