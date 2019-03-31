@@ -12,6 +12,10 @@ import java.util.Date;
  */
 public class Main {
 
+    /**
+     * This method is used to run the ATM machine GUI.
+     */
+
     public static void main(String[] args) {
         String filename = "phase1/final.ser";
         File tmp = new File(filename);
