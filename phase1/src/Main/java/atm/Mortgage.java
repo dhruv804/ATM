@@ -10,9 +10,7 @@ public class Mortgage extends Debt implements Serializable {
      * The Mortgage abstract class inherits the Debt super class features. Additionally, it sets the initial balance to
      * negative initial_amount and passes in the interest_rate.
      *
-     * @param initial_amount the absolute balance of mortgage
-     * @param interest_rate the interest rate on mortgage account
-     *
+     * This method sets the default balance to 500000. Interest rate to 4% and limit to 1000000.
      */
 
     public Mortgage() {
@@ -23,7 +21,6 @@ public class Mortgage extends Debt implements Serializable {
     }
 
     /**
-     *
      * This method overrides and returns the success of a Mortgage amount withdrawal attempt
      *
      * @param amount the amount to be transferred out from a Mortgage account
