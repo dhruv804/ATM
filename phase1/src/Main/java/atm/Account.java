@@ -66,11 +66,13 @@ public abstract class Account implements Serializable {
     }
 
     /**
+     * This boolean method is used to determine a success or failure of an attempted transfer.
      *
      * @param other_account Payee Account
      * @param amount Amount to be transferred
      * @return true if successful, false if not
      */
+
     public boolean transfer(Account other_account, double amount){
         if (this.withdraw(amount)){
             other_account.deposit(amount);
